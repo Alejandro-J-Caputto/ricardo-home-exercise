@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+//scrollbar
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: paleturquoise; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  @include responsive(tab-land) {
+    font-size: 56.25%;
+  }
+  @include responsive(tab-port) {
+    font-size: 50%;
+  }
+  @include responsive(phone) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: "roboto", "Helvetica", "Arial", sans-serif;
+}
+
+
