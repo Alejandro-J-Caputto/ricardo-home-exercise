@@ -1,11 +1,25 @@
-# Getting Started with Create React App
+# RICARDO HOME EXERCISE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## INDEX
+* INTRODUCTION
+* SCRIPTS
+* DIFERENT BRANCHES & ROLES
+* FLOWCHART
+* APP DESCRIPTION
 
-## Available Scripts
 
-In the project directory, you can run:
+<br/>
 
+________
+
+## INTRODUCTION
+I am really happy working on this small Ricardo version. I hope you find the code readable and well structured. 
+<br/>
+At first I thouth about the features that I could implement in this small version, finally I have decided to first focus on the minimal requirements and fullfilth the minimal viable product. After that, release my imagination and depending on the available time implement the new features.
+
+<br>
+
+## SCRIPTS 
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -29,18 +43,29 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## DIFERENT BRANCHES & ROLES
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Probably it is going to be more than a couple of branches
+<br>
+<br>
+WILL UPDATE LATER
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## FLOWCHART
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I like to do this kind of things.  
 
-## Learn More
+If you want you can visit my workspace [HOME-EXERCISE-WORKSPACE](https://trello.com/b/24XwVoJJ/home-exercise-ricardo)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img style="width: 600px; width: 600px;" src="provisional-flowchart.png" />
+<img>
+
+
+
+## APP DESCRIPTION
+
+(UPDATE LATER)
+
