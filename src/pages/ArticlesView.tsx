@@ -3,11 +3,13 @@ import SearchBar from "../components/search/SearchBar";
 
 const ArticlesView = () => {
   return (
-    <main>
-      <SearchBar/>
-      <ArticlesContainer/>
-    </main>
-  )
+    <>
+      <SearchBar />
+      <main className="articles">
+        <ArticlesContainer />
+      </main>
+    </>
+  );
 };
 
 export default ArticlesView;

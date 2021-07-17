@@ -1,0 +1,13 @@
+.articles-grid {
+    display: flex;
+    max-width: 1140px;
+    margin: 0 auto;
+    background-color: $background-nav;
+    padding: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    // min-height: 500px;
+    @include responsive(phone) {
+        justify-content: flex-start;
+    }
+}

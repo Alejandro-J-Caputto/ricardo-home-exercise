@@ -1,9 +1,10 @@
 .searchBar {
   background-color: $background-nav;
   height: 100px;
-
+  margin-bottom: 5rem;
   &-group {
     @include absoluteCenter;
+    width: 100%;
     position: relative;
     padding: 0 1.2rem;
     display: grid;

@@ -19,4 +19,7 @@
 }
 .nav {
     flex: 0 0 80%;
+    @include responsive(tab-port) {
+        flex: unset;
+    }
 }

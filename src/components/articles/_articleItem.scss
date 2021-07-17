@@ -1,0 +1,36 @@
+.article {
+    cursor: pointer;
+    position: relative;
+
+    width: 20rem;
+    height: 300px;
+    margin: 1rem;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: $background-main;
+    box-shadow: 10px 5px 5px rgba(black, .2);
+
+    &-head {
+        height: 45%;
+        // width: 100%;
+        &__img {
+            width: 20rem;
+        }
+    }
+    &-body {
+        height: 55%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        font-size: 1.2rem;
+        justify-content: space-around;
+        font-weight: 600;
+        @include responsive(phone) {
+            font-size: 1.6rem
+        }
+        &__date p:first-child > span:first-child{
+            font-weight: 400;
+        }
+    }
+}
