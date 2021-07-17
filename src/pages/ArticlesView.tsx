@@ -5,9 +5,9 @@ const ArticlesView = () => {
   return (
     <>
       {/* <SearchBar /> */}
-      <main className="articles">
+      <section className="container">
         <ArticlesContainer />
-      </main>
+      </section>
     </>
   );
 };

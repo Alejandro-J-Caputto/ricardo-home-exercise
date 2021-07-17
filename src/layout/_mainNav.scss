@@ -1,25 +1,24 @@
 .header {
-    background-color: $background-nav;
-    display: flex;
-    height: 60px;
-    justify-content: space-between;
-
+  // position: fixed;
+  width: 100%;
+  background-color: $background-nav;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
 }
 .logo {
-
-    flex: 0 0 20%;
-    height: inherit;
-    padding: 1.8rem 1.2rem;
-    &__link {
-
-    }
-    &__svg {
-        width: 11.5rem;
-    }
+  flex: 0 0 20%;
+  height: inherit;
+  padding: 1.8rem 1.2rem;
+  &__link {
+  }
+  &__svg {
+    width: 11.5rem;
+  }
 }
 .nav {
-    flex: 0 0 80%;
-    @include responsive(tab-port) {
-        flex: unset;
-    }
+  flex: 0 0 80%;
+  @include responsive(tab-port) {
+    flex: unset;
+  }
 }
