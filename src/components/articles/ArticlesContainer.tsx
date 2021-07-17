@@ -1,10 +1,15 @@
+import { SearchArticle } from "../../types/response.types";
 import ArticleItem from "./ArticleItem";
 
-const ArticlesContainer: React.FC = () => {
-  const tempArr = ['uno', 'dos', '3', '5', 'patata'];
+const ArticlesContainer: React.FC<{ items: SearchArticle[] }> = (props) => {
+  const { items } = props;
   return (
     <div className="articles-grid">
-      {tempArr.map(el => <ArticleItem key={el}/>)}
+      {!items.length ? (
+        <h2>NO RESULTS FOUND</h2>
+      ) : (
+        items.map((el) => <ArticleItem key={el.id} itemsContent={el} />)
+      )}
     </div>
   );
 };

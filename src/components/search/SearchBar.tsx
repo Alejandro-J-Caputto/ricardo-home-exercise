@@ -1,33 +1,39 @@
-const SearchBar: React.FC = () => {
-  console.log("me dispare desde el componente");
-  // const [articleInputState, setarticleInputState] = useState("ukelele");
-  // const { isLoading, httpRequest } = useFetch();
-  // const [articles, setArticles] = useState<SearchArticle[]>([]);
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
-  // const fetchArticles: cbData = useCallback((dataComponent) => {
-  //   const results = dataComponent as SearchResponse;
-  //   setArticles(results.articles);
-  // }, []);
+const SearchBar: React.FC<{}> = (props) => {
+  const history = useHistory();
+  const location = useLocation();
+  const [enteredText, setEnteredText] = useState("");
 
-  // const searchInputHandler = async () => {
-  //   httpRequest(
-  //     {
-  //       endpoint: "search",
-  //       params: `searchText=${articleInputState}`,
-  //       method: "GET",
-  //     },
-  //     (dataComponent) => {
-  //       const results = dataComponent as SearchResponse;
-  //       setArticles(results.articles);
-  //     }
-  //   );
-  // };
+  const [searchInputIsValid, setSearchInputIsValid] = useState<boolean>(false);
+
+  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEnteredText(event.target.value);
+  };
+  const submitHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    history.push(`${location.pathname}/search/${enteredText}`);
+  };
+
+  useEffect(() => {
+    const validTimer = setTimeout(() => {
+      setSearchInputIsValid(enteredText.trim().length > 3);
+    }, 500);
+    return () => {
+      clearInterval(validTimer);
+    };
+  }, [enteredText]);
 
   return (
     <div className="searchBar">
       <form className="searchBar-group">
         <input
+          onChange={inputChangeHandler}
           type="text"
+          name="search"
           id="search"
           placeholder="Search Article"
           className="searchBar-group__input"
@@ -36,7 +42,11 @@ const SearchBar: React.FC = () => {
         <label htmlFor="search" className="searchBar-group__label">
           Search Article
         </label>
-        <button className="btn btn-search">
+        <button
+          onClick={submitHandler}
+          className="btn btn-search"
+          disabled={!searchInputIsValid}
+        >
           <i className="fas fa-search"></i>
           <span>Search</span>
         </button>

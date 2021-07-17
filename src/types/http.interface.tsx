@@ -12,4 +12,4 @@ export default interface HttpConfig {
   body?: any;
 }
 
-export type cbData = (data: GetUserResponse | ArticleResponse | SearchResponse) => void;
+export type cbData = (data?: GetUserResponse | ArticleResponse | SearchResponse) => void;

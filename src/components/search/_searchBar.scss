@@ -61,6 +61,11 @@
         background-color: rgba($color: $border-frozen-purlple, $alpha: 0.8);
         color: whitesmoke;
       }
+      &:disabled {
+        background-color: rgba($color: salmon, $alpha: .5);
+        cursor: not-allowed;
+        color: navy;
+      }
       @include responsive(tab-port) {
         grid-row: row-1-start;
         border: none;

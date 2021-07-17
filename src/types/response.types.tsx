@@ -13,6 +13,7 @@ export type ArticleDetails = {
   descriptionHtml: string;
   imageUrl: string;
   sellerId: string;
+  sellerName?: string;
 };
 
 export type ArticleResponse = ArticleDetails;

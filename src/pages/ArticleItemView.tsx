@@ -1,18 +1,62 @@
-import arnold from "../assets/img/message--arnold.jpg";
-const ArticleItemView = () => {
+import { useCallback } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import { ArticleDetails, ArticleResponse, User } from "../types/response.types";
+const ArticleItemView: React.FC<{}> = (props) => {
+  console.log("me dispare");
+  const [article, setArticle] = useState<ArticleDetails>();
+  const { articleId } = useParams<{ articleId: string }>();
+  const { httpRequest } = useFetch();
+  const promises = useCallback(async () => {
+    const data = await httpRequest({
+      endpoint: "article-details",
+      params: `articleId=${articleId}`,
+      method: "GET",
+    });
+    return data;
+  }, [articleId, httpRequest]);
+  useEffect(() => {
+    promises().then((data: ArticleDetails) => {
+      httpRequest(
+        {
+          endpoint: "user",
+          params: `userId=${data.sellerId}`,
+          method: "GET",
+        },
+        (dataComponent) => {
+          const user = dataComponent as User;
+          const dataRefactorized = { sellerName: user.name, ...data };
+          setArticle(dataRefactorized);
+        }
+      );
+    });
+    return () => {};
+  }, [httpRequest, promises]);
+
   return (
     <div className="container">
       <div className="card">
         <div className="card-container">
-          <img src={arnold} alt="test" className="card-container__image" />
+          <img
+            src={article?.imageUrl}
+            alt="test"
+            className="card-container__image"
+          />
         </div>
         <div className="card-body">
           <div className="card-body__title">
-            <h2>Arnold Schwarzenegger</h2>
+            <h2>{article?.title}</h2>
           </div>
           <div className="card-body__info">
-            <p> <span> Seller:</span> Sylvester Stallone</p>
-            <p> <span> Price: </span>9000 CHF</p>
+            <p>
+              {" "}
+              <span> Seller:</span> {article?.sellerName}
+            </p>
+            <p>
+              {" "}
+              <span> Price: </span>9000 CHF
+            </p>
           </div>
           <div className="card-body__description">
             <div className="card-body__description-title">

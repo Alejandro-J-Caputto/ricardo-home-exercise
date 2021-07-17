@@ -1,7 +1,6 @@
 .article {
   cursor: pointer;
   position: relative;
-
   width: 20rem;
   height: 300px;
   margin: 1rem;
@@ -9,11 +8,15 @@
   border-radius: 8px;
   background-color: $background-main;
   box-shadow: 10px 5px 5px rgba(black, 0.2);
-
+  & a:visited, a:link, a:hover, a:active {
+    text-decoration: none;
+    color: unset;
+  }
   &-head {
     height: 45%;
     &__img {
       width: 20rem;
+      height: 100%;
     }
   }
   &-body {
