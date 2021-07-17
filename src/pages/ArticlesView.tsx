@@ -4,7 +4,7 @@ import SearchBar from "../components/search/SearchBar";
 const ArticlesView = () => {
   return (
     <>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <main className="articles">
         <ArticlesContainer />
       </main>

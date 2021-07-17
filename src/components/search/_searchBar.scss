@@ -1,6 +1,7 @@
 .searchBar {
-  background-color: $background-nav;
+  background-color: $background-main;
   height: 100px;
+  margin-top: 5rem;
   margin-bottom: 5rem;
   &-group {
     @include absoluteCenter;

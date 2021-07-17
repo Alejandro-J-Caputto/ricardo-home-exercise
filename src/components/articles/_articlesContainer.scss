@@ -7,7 +7,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     // min-height: 500px;
-    @include responsive(phone) {
+    @include responsive(small-phone) {
         justify-content: flex-start;
     }
 }
