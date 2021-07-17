@@ -34,6 +34,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  height: 100%;
   @include responsive(tab-land) {
     font-size: 56.25%;
   }
@@ -46,7 +47,11 @@ html {
 }
 
 body {
+  height: 100%;
+  background-color: $background-main;
   font-family: "roboto", "Helvetica", "Arial", sans-serif;
+  font-size: $default-font-size;
+  font-weight: 400;
 }
 
 

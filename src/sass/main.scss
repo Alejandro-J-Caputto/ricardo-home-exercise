@@ -1,4 +1,17 @@
-@import './abstracts/mixins';
-@import './abstracts/variables';
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
 @import "./base/base";
 @import "./typography/typography";
+
+//LAYOUT
+@import "../layout/ricardoWrapper";
+@import "../layout/mainNav";
+//PAGES
+@import "../pages/articlesView";
+@import "../pages/articleItemView";
+@import "../pages/notFound404";
+//COMPONENTS
+@import "../components/articles/articleItem";
+@import "../components/articles/articlesContainer";
+@import "../components/search/searchBar";
+@import "./smallComponents/buttons";

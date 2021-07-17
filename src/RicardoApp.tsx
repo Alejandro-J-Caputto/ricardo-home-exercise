@@ -1,9 +1,14 @@
-const RicardoApp: React.FC = () => {
+// import ArticlesContainer from "./components/articles/ArticlesContainer";
+// import SearchBar from "./components/search/SearchBar";
+import AppRouter from './routers/AppRouter'
+import RicardoWrapper from "./layout/RicardoWrapper";
 
+
+const RicardoApp: React.FC = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <RicardoWrapper>
+      <AppRouter/>
+    </RicardoWrapper>
   );
 };
 

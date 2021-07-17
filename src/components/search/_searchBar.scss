@@ -1,0 +1,75 @@
+.searchBar {
+  background-color: $background-nav;
+  height: 100px;
+
+  &-group {
+    @include absoluteCenter;
+    position: relative;
+    padding: 0 1.2rem;
+    display: grid;
+    grid-template-columns: [colum-1-start]90% [colum-1-end colum-2-start] 10%[colum-2-end];
+    gap: 1.5rem;
+    @include responsive(tab-port) {
+      grid-template-columns: [colum-1-start]100% [colum-1-end colum-2-start];
+      grid-template-rows: [row-1-start]5rem[row-1-end row-2-start] 5rem [row-2-end];
+    }
+    &__label {
+      position: absolute;
+      transform: translate(10%, -40%);
+      background-color: white;
+      padding: 0 0.5rem;
+      grid-column: colum-1-start / colum-2-start;
+      font-size: 1.6rem;
+      transition: all 0.3s;
+      color: $border-frozen-purlple;
+    }
+
+    &__input {
+      grid-column: colum-1-start / colum-2-start;
+      font-size: inherit;
+      font-family: inherit;
+      padding: 1.4rem;
+      border-color: $border-frozen-purlple;
+      border-radius: 6px;
+      @include responsive(tab-port) {
+        grid-row: row-1-start;
+      }
+    }
+    &__input:focus {
+      outline-color: $border-frozen-purlple;
+      outline-style: inherit;
+      outline-width: thick;
+    }
+    &__input:placeholder-shown ~ &__label {
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(10%, 90%);
+      font-size: 1.2rem;
+    }
+    .btn-search {
+      border-radius: 6px;
+      color: $border-frozen-purlple;
+      border-color: $border-frozen-purlple;
+      width: 120px;
+      grid-column: colum-2-start / colum-2-end;
+      text-transform: uppercase;
+      background-color: rgba($color: $border-frozen-purlple, $alpha: 0.07);
+      transition: all 0.3s;
+      &:hover {
+        background-color: rgba($color: $border-frozen-purlple, $alpha: 0.8);
+        color: whitesmoke;
+      }
+      @include responsive(tab-port) {
+        grid-row: row-1-start;
+        border: none;
+        color: whitesmoke;
+        background-color: $border-frozen-purlple;
+        grid-column: colum-1-start;
+        justify-self: end;
+      }
+      span {
+        margin-left: 7px;
+      }
+    }
+  }
+}
