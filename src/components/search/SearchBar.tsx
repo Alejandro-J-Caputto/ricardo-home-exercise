@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const SearchBar: React.FC<{}> = (props) => {
   const history = useHistory();
-  const location = useLocation();
+
   const [enteredText, setEnteredText] = useState("");
 
   const [searchInputIsValid, setSearchInputIsValid] = useState<boolean>(false);
@@ -15,7 +15,7 @@ const SearchBar: React.FC<{}> = (props) => {
   };
   const submitHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    history.push(`${location.pathname}/search/${enteredText}`);
+    history.push(`/home-exercise/search/${enteredText}`);
   };
 
   useEffect(() => {

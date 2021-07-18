@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests on searchBar component should render Searchbar correctly 1`] = `
+<div
+  className="searchBar"
+>
+  <form
+    className="searchBar-group"
+  >
+    <input
+      autoComplete="off"
+      className="searchBar-group__input"
+      id="search"
+      name="search"
+      onChange={[Function]}
+      placeholder="Search Article"
+      type="text"
+    />
+    <label
+      className="searchBar-group__label"
+      htmlFor="search"
+    >
+      Search Article
+    </label>
+    <button
+      className="btn btn-search"
+      disabled={true}
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-search"
+      />
+      <span>
+        Search
+      </span>
+    </button>
+  </form>
+</div>
+`;
