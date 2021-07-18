@@ -2,14 +2,14 @@ import { useCallback } from "react";
 import { useState } from "react";
 import HttpConfig, { cbData } from "../types/http.interface";
 
-const useFetch = () => {
+export const useFetch = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const httpRequest = useCallback(
-    async (httpConfig: HttpConfig, cbData?: cbData) => {
-      setIsLoading(true);
-      try {
+ const httpRequest = useCallback(
+   async (httpConfig: HttpConfig, cbData?: cbData) => {
+     setIsLoading(true);
+     try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/${httpConfig.endpoint}?${httpConfig.params}&apiToken=${process.env.REACT_APP_API_KEY}`,
           {
@@ -38,6 +38,7 @@ const useFetch = () => {
     isLoading,
     error,
     httpRequest,
+    setIsLoading
   };
 };
 

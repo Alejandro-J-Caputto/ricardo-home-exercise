@@ -1,3 +1,4 @@
+
 import { Route, Switch, Redirect } from "react-router-dom";
 import SearchBar from "../components/search/SearchBar";
 import ArticleItemView from "../pages/ArticleItemView";
@@ -19,8 +20,8 @@ const AppRouter: React.FC = () => {
       <Route path="/home-exercise/article/:articleId">
         <ArticleItemView />
       </Route>
-      <Route path="*">
-        <NotFound404 />
+      <Route path='*'>
+        <NotFound404/>
       </Route>
     </Switch>
   );

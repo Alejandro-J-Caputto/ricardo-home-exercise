@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests on ArticlesContainer should match the snapshot 1`] = `
+<div
+  className="article"
+  data-id={123}
+>
+  <Link
+    to="/home-exercise/article/123"
+  >
+    <div
+      className="article-head"
+    >
+      <img
+        alt="test article"
+        className="article-head__img"
+        src="123"
+      />
+    </div>
+    <div
+      className="article-body"
+    >
+      <div
+        className="article-body__title"
+      >
+        <p
+          className="heading-article"
+        >
+          123
+        </p>
+      </div>
+      <div
+        className="article-body__date"
+      >
+        <p>
+          <span>
+            Ending on:
+          </span>
+          <span>
+            0122-12-31
+          </span>
+        </p>
+        <p>
+          <span>
+            23:25
+          </span>
+        </p>
+      </div>
+      <div
+        className="article-body__price"
+      >
+        <p>
+          9000
+           CHF
+        </p>
+      </div>
+    </div>
+  </Link>
+</div>
+`;

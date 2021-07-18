@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests on ArticlesContainer should match the snapshot 1`] = `
+<Fragment>
+  <div
+    className="articles-grid"
+  />
+</Fragment>
+`;

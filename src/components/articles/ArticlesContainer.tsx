@@ -14,7 +14,7 @@ const ArticlesContainer: React.FC<{
 
       <div className="articles-grid">
         {!items.length && !isLoading ? (
-          <h2>NO RESULTS FOUND</h2>
+          <h2>NO RESULTS FOUND!!</h2>
         ) : (
           items.map((el) => <ArticleItem key={el.id} itemsContent={el} />)
         )}
