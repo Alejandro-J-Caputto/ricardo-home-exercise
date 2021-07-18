@@ -3,12 +3,11 @@ import { useState } from "react";
 import HttpConfig, { cbData } from "../types/http.interface";
 
 const useFetch = () => {
-  // const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const httpRequest = useCallback(
     async (httpConfig: HttpConfig, cbData?: cbData) => {
-      // console.log("me dispare desde fetch");
       setIsLoading(true);
       try {
         const response = await fetch(
@@ -19,20 +18,25 @@ const useFetch = () => {
             body: httpConfig.body ? httpConfig.body : null,
           }
         );
+        if (!response.ok) {
+          throw new Error("There was a problem with the request");
+        }
         const data = await response.json();
+        setIsLoading(false);
         if (cbData) {
           cbData(data);
         }
-        setIsLoading(false)
         return data;
       } catch (error) {
-        console.log(error);
+        setError(error.message);
       }
+      setIsLoading(false);
     },
     []
   );
   return {
     isLoading,
+    error,
     httpRequest,
   };
 };

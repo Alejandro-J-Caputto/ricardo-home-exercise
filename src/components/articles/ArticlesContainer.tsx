@@ -1,11 +1,16 @@
 import { SearchArticle } from "../../types/response.types";
 import ArticleItem from "./ArticleItem";
 
-const ArticlesContainer: React.FC<{ items: SearchArticle[], isLoading:boolean }> = (props) => {
+const ArticlesContainer: React.FC<{
+  items: SearchArticle[];
+  isLoading: boolean;
+}> = (props) => {
   const { items, isLoading } = props;
   return (
     <>
-      {isLoading === false ? <p className="count-result">Total Count: {items.length + 1} </p> : null}
+      {isLoading === false ? (
+        <p className="count-result">Total Count: {items.length + 1} </p>
+      ) : null}
 
       <div className="articles-grid">
         {!items.length && !isLoading ? (
