@@ -6,11 +6,11 @@ import HttpConfig, { cbData } from "../types/http.interface";
 import {  SearchArticle, SearchResponse } from "../types/response.types";
 
 const ArticlesView: React.FC<{
-  onSubmitRequest: (httpConfig: HttpConfig, cbData: cbData) => Promise<void>;
+  onSubmitRequest: (httpConfig: HttpConfig, cbData: cbData) => Promise<void>, isLoading:boolean;
 }> = (props) => {
   const { searchText: enteredText } = useParams<{ searchText: string }>();
   const [articles, setArticles] = useState<SearchArticle[]>([])
-  const {onSubmitRequest} = props;
+  const {onSubmitRequest, isLoading} = props;
   // console.log(enteredText);
   useEffect(() => {
     onSubmitRequest({
@@ -29,7 +29,7 @@ const ArticlesView: React.FC<{
     <>
       {/* <SearchBar /> */}
       <section className="container">
-        <ArticlesContainer items={articles}/>
+        <ArticlesContainer items={articles} isLoading={isLoading}/>
       </section>
     </>
   );

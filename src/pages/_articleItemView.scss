@@ -1,16 +1,17 @@
 .card {
+  position: relative;
   display: flex;
-  height: 400px;
+  height: 500px;
   max-width: 1000px;
   background-color: $background-nav;
   margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 10px 10px 5px rgba($color: black, $alpha: .2);
+  box-shadow: 10px 10px 5px rgba($color: black, $alpha: 0.2);
   @include responsive(phone) {
-      width: 40rem;
-      flex-direction: column;
-      height: 600px;
+    width: 40rem;
+    flex-direction: column;
+    height: 600px;
   }
   &-container {
     position: relative;
@@ -26,35 +27,63 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-
+    justify-content: stretch;
+    flex: 0 0 50%;
     height: 100%;
+    overflow-y: scroll;
+    position: relative;
     &__title {
+      // min-height: 10rem;
       position: relative;
-      height: 20%;
+      flex: 0 0 25%;
+      & h2 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
     &__info {
+      min-height: 10rem;
+      flex: 0 0 25%;
       position: relative;
       height: 20%;
+      margin-bottom: 40px;
+      & div {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       & span {
-          font-weight: 700;
+        font-weight: 700;
       }
     }
     &__title::after,
     &__info::after {
-        position: absolute;
-        bottom: 0%;
-        left: 50%;
-        transform: translateX(-50%);
-        content: "";
-        width: 200px;
-        height: 2px;
-        background: $border-frozen-purlple;
+      position: absolute;
+      bottom: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      content: "";
+      width: 200px;
+      height: 2px;
+      background: $border-frozen-purlple;
+    }
+
+    &__description {
+      font-size: 1.6rem;
+      list-style: none;
+      & p {
+        font-family: 'roboto' !important;
+      }
+      ul {
+        // background-color: rgb(47, 56, 30);
+        padding: 2rem;
+      }
     }
     &__description-title {
-        & > p:first-child {
-            margin-bottom: 2rem;
-        }
+      & > p:first-child {
+        margin-bottom: 2rem;
+      }
     }
   }
 }

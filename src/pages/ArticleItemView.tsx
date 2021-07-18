@@ -1,14 +1,16 @@
+import { useRef } from "react";
 import { useCallback } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import { ArticleDetails, ArticleResponse, User } from "../types/response.types";
+import { ArticleDetails, User } from "../types/response.types";
 const ArticleItemView: React.FC<{}> = (props) => {
-  console.log("me dispare");
+  const descriptionContainer = useRef<HTMLDivElement>(null)!;
   const [article, setArticle] = useState<ArticleDetails>();
   const { articleId } = useParams<{ articleId: string }>();
   const { httpRequest } = useFetch();
-  const promises = useCallback(async () => {
+
+  const fetchArticle = useCallback(async () => {
     const data = await httpRequest({
       endpoint: "article-details",
       params: `articleId=${articleId}`,
@@ -16,8 +18,17 @@ const ArticleItemView: React.FC<{}> = (props) => {
     });
     return data;
   }, [articleId, httpRequest]);
+
+  const setInnerHtml = useCallback( (mark: string) => {
+    if (!mark) {
+      return;
+    }
+    descriptionContainer.current!.innerHTML = mark;
+  }, [descriptionContainer]);
+
   useEffect(() => {
-    promises().then((data: ArticleDetails) => {
+    fetchArticle()
+    .then((data: ArticleDetails) => {
       httpRequest(
         {
           endpoint: "user",
@@ -28,11 +39,13 @@ const ArticleItemView: React.FC<{}> = (props) => {
           const user = dataComponent as User;
           const dataRefactorized = { sellerName: user.name, ...data };
           setArticle(dataRefactorized);
+          setInnerHtml(dataRefactorized.descriptionHtml);
         }
       );
     });
     return () => {};
-  }, [httpRequest, promises]);
+  }, [httpRequest, fetchArticle, setInnerHtml]);
+
 
   return (
     <div className="container">
@@ -49,26 +62,19 @@ const ArticleItemView: React.FC<{}> = (props) => {
             <h2>{article?.title}</h2>
           </div>
           <div className="card-body__info">
-            <p>
-              {" "}
-              <span> Seller:</span> {article?.sellerName}
-            </p>
-            <p>
-              {" "}
-              <span> Price: </span>9000 CHF
-            </p>
-          </div>
-          <div className="card-body__description">
-            <div className="card-body__description-title">
-              <p>Arnold Schwarzenegger Predator Edition</p>
+            <div className="">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                reiciendis fugit ab quia facilis. Tempore, consequatur ducimus.
-                Consequatur, velit fuga ut adipisci omnis cum eligendi nisi odit
-                architecto debitis dicta.
+                <span> Seller:</span> {article?.sellerName}
+              </p>
+              <p>
+                <span> Price: </span>9000 CHF
               </p>
             </div>
           </div>
+          <div
+            ref={descriptionContainer}
+            className="card-body__description"
+          ></div>
         </div>
       </div>
     </div>
