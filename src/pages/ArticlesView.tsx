@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ArticlesContainer from "../components/articles/ArticlesContainer";
-import useFetch from "../hooks/useFetch";
-import { SearchArticle, SearchResponse } from "../types/response.types";
+import { fetchAllArticlesByText } from "../redux/actions/articlesActions";
+import { RootState } from "../redux/store/store";
+import { ArticleInitialState } from "../types/reducers.interface";
 
 const ArticlesView: React.FC<{}> = (props) => {
   const { searchText: enteredText } = useParams<{ searchText: string }>();
-  const [articles, setArticles] = useState<SearchArticle[]>([]);
-  const { httpRequest: fetchArticles, isLoading } = useFetch();
-
+  const isLoading = false;
+  const articlesDispatch = useDispatch();
+  const articlesState: ArticleInitialState = useSelector(
+    (state: RootState) => state.articles
+  );
+  const { articles } = articlesState;
   useEffect(() => {
-    fetchArticles(
-      {
-        endpoint: "search",
-        params: `searchText=${enteredText}`,
-        method: "GET",
-      },
-      (dataComponent) => {
-        const results = dataComponent as SearchResponse;
-        setArticles(results.articles);
-      }
-    );
-  }, [enteredText, fetchArticles]);
+    articlesDispatch(fetchAllArticlesByText("nintendo"));
+  }, [enteredText, articlesDispatch]);
+  console.log(articles);
   return (
     <>
       <section className="container">
