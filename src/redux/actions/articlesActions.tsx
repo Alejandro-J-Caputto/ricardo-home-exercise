@@ -13,7 +13,6 @@ export const fetchAllArticlesByText = (value: string) => {
       },
       (dataComponent) => {
         const results = dataComponent as SearchResponse;
-        console.log("hello");
         dispatch(setArticles(results.articles));
       }
     );

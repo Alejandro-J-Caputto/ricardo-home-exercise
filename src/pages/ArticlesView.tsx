@@ -15,9 +15,8 @@ const ArticlesView: React.FC<{}> = (props) => {
   );
   const { articles } = articlesState;
   useEffect(() => {
-    articlesDispatch(fetchAllArticlesByText("nintendo"));
+    articlesDispatch(fetchAllArticlesByText(enteredText));
   }, [enteredText, articlesDispatch]);
-  console.log(articles);
   return (
     <>
       <section className="container">
