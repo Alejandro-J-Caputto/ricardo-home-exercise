@@ -5,7 +5,6 @@ import useFetch from "../hooks/useFetch";
 import { SearchArticle, SearchResponse } from "../types/response.types";
 
 const ArticlesView: React.FC<{}> = (props) => {
-
   const { searchText: enteredText } = useParams<{ searchText: string }>();
   const [articles, setArticles] = useState<SearchArticle[]>([]);
   const { httpRequest: fetchArticles, isLoading } = useFetch();

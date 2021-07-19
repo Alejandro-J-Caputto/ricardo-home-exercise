@@ -4,7 +4,7 @@ const MainNav: React.FC = () => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/home-exercise"  className="logo__link">
+        <Link to="/home-exercise" className="logo-link" >
           <img className="logo__svg" src={logo} alt="ricardo logo" />
         </Link>
       </div>
