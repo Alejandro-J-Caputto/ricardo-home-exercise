@@ -13,10 +13,32 @@
     color: unset;
   }
   &-head {
+    position: relative;
     height: 45%;
     &__img {
       width: 20rem;
       height: 100%;
+    }
+    &__flag {
+      position: absolute;
+      z-index: 500;
+      left: 75%;
+      top: 10%;
+      height: 35px;
+      width: 35px;
+      font-size: 1.9rem;
+      border-radius: 50%;
+      background-color: rgba($color: whiteSmoke, $alpha: .5);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        cursor: pointer;
+      }
+      & i.red{
+        color: $ricardo-orange;
+      }
     }
   }
   &-body {
@@ -33,6 +55,11 @@
     }
     &__date p:first-child > span:first-child {
       font-weight: 400;
+    }
+    &__price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 }

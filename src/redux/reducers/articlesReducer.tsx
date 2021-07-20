@@ -17,6 +17,8 @@ const initialState: ArticleInitialState = {
     id: "",
     name: "",
   },
+  savedArticlesIDs: [],
+  selectedItemsLocalStorage: [],
 };
 
 export const articlesReducer = (
@@ -32,12 +34,22 @@ export const articlesReducer = (
     case ArticleTypes.articlesGetById:
       return {
         ...state,
-        articlesById: {...action.payload},
+        articlesById: { ...action.payload },
       };
     case ArticleTypes.articleUserSeller:
       return {
         ...state,
         sellerById: { ...action.payload },
+      };
+    case ArticleTypes.articleStoreId:
+      return {
+        ...state,
+        savedArticlesIDs: [...action.payload],
+      };
+    case ArticleTypes.articleStoreItem:
+      return {
+        ...state,
+        selectedItemsLocalStorage: [...action.payload],
       };
     default:
       return state;

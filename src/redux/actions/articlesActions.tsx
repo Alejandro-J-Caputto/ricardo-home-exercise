@@ -62,6 +62,77 @@ export const fetchArticleById = (value: string) => {
   };
 };
 
+export const setArticleIdAsync = (id: string, article: SearchArticle) => {
+  return async (dispatch: AppDispatch) => {
+    let selectedItemsArr;
+    let itemsDBLocal;
+
+    if (
+      !localStorage.getItem("selectedItems") &&
+      !localStorage.getItem("selectedItems")
+    ) {
+      selectedItemsArr = [];
+      selectedItemsArr.push(id);
+      localStorage.setItem("selectedItems", JSON.stringify(selectedItemsArr));
+      itemsDBLocal = [];
+      itemsDBLocal.push(article);
+      localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
+      dispatch(setArticleItemLocal(itemsDBLocal));
+    } else {
+      selectedItemsArr = JSON.parse(
+        localStorage.getItem("selectedItems")!
+      ) as string[];
+      selectedItemsArr.push(id);
+      localStorage.setItem("selectedItems", JSON.stringify(selectedItemsArr));
+      itemsDBLocal = JSON.parse(
+        localStorage.getItem("itemsDBLocal")!
+      ) as SearchArticle[];
+      itemsDBLocal.push(article);
+      localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
+      dispatch(setArticleID(selectedItemsArr));
+      dispatch(setArticleItemLocal(itemsDBLocal));
+    }
+  };
+};
+
+export const getSelectedArticlesIdAsync = () => {
+  return async (dispatch: AppDispatch) => {
+    if (
+      !localStorage.getItem("selectedItems") ||
+      !localStorage.getItem("itemsDBLocal")
+    ) {
+      return;
+    }
+    const selectedItemsArr = JSON.parse(
+      localStorage.getItem("selectedItems")!
+    ) as string[];
+    const itemsDBLocal = JSON.parse(
+      localStorage.getItem("itemsDBLocal")!
+    ) as SearchArticle[];
+    dispatch(setArticleID(selectedItemsArr));
+    dispatch(setArticleItemLocal(itemsDBLocal));
+  };
+};
+
+export const postItemLocalAsync = (article: SearchArticle) => {
+  return async (dispatch: AppDispatch) => {
+    let itemsDBLocal;
+    if (!localStorage.getItem("itemsDBLocal")) {
+      itemsDBLocal = [];
+      itemsDBLocal.push(article);
+      localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
+      dispatch(setArticleItemLocal(itemsDBLocal));
+    } else {
+      itemsDBLocal = JSON.parse(
+        localStorage.getItem("itemsDBLocal")!
+      ) as SearchArticle[];
+      itemsDBLocal.push(article);
+      localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
+      dispatch(setArticleItemLocal(itemsDBLocal));
+    }
+  };
+};
+
 export const setArticles = (articles: SearchArticle[]) => ({
   type: ArticleTypes.articlesGetBySearch,
   payload: articles,
@@ -73,4 +144,14 @@ export const setArticleByID = (article: ArticleDetails) => ({
 export const setUserSellerById = (seller: User) => ({
   type: ArticleTypes.articleUserSeller,
   payload: seller,
+});
+
+export const setArticleID = (ids: string[]) => ({
+  type: ArticleTypes.articleStoreId,
+  payload: ids,
+});
+
+export const setArticleItemLocal = (article: SearchArticle[]) => ({
+  type: ArticleTypes.articleStoreItem,
+  payload: article,
 });
