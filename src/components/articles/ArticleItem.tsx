@@ -5,7 +5,7 @@ const ArticleItem: React.FC<{ itemsContent: SearchArticle }> = (props) => {
   const { buyNowPrice, endDate, id, imageUrl, title } = props.itemsContent;
   const dateFormat = new Date(endDate).toISOString().split("T");
   const date = dateFormat[0];
-  const time = dateFormat[1];
+  const time = dateFormat[1].slice(0, 5);
 
   return (
     <div className="article" data-id={id}>

@@ -4,18 +4,24 @@ export const ArticleTypes = {
   articleFilterByDate: "[Articles] Sort the Articles by date",
   articleFilterByPrice: "[Articles] Sort by Price",
   articleFilterByName: "[Articles] Filter article by name",
+  articleUserSeller: "[Articles] User seller by ID"
 };
 
-export const UITypes = {
+export const UINotificationTypes = {
+  uiDisplayNotification: "[UI-N] Display Notification",
+  uiHideNotification: "[UI-N] Hide Notification",
+  uiSetNotificationContent: "[UI-N] Set Notification Content",
+};
+
+export const UILoadingTypes = {
+  uiLoadingMain: "[UI] Loads while check the current token",
+  uiLoadingSmall: "[UI] For small operations",
   uiSetError: "[UI] Set Error",
   uiRemoveError: "[UI] Remove Error",
-  uiDisplayNotification: "[UI] Display Notification",
-  uiHideNotification: "[UI] Hide Notification",
-  uiSetNotificationContent: "[UI] Set Notification Content",
 };
 
 export const AuthTypes = {
-  login: "[Auth]Login",
-  register: "[Auth] Register",
-  logout: "[Auth]Logout",
+  authLogin: "[Auth]Login",
+  authRegister: "[Auth] Register",
+  authLogout: "[Auth]Logout",
 };

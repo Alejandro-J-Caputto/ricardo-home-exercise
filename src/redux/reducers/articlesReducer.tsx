@@ -12,7 +12,10 @@ const initialState: ArticleInitialState = {
     descriptionHtml: "",
     imageUrl: "",
     sellerId: "",
-    sellerName: "",
+  },
+  sellerById: {
+    id: "",
+    name: "",
   },
 };
 
@@ -23,13 +26,18 @@ export const articlesReducer = (
   switch (action.type) {
     case ArticleTypes.articlesGetBySearch:
       return {
-        ...initialState,
+        ...state,
         articles: [...action.payload],
       };
     case ArticleTypes.articlesGetById:
       return {
-        ...initialState,
-        ariclesById: { ...action.payload },
+        ...state,
+        articlesById: {...action.payload},
+      };
+    case ArticleTypes.articleUserSeller:
+      return {
+        ...state,
+        sellerById: { ...action.payload },
       };
     default:
       return initialState;
