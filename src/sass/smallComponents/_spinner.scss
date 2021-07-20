@@ -1,0 +1,26 @@
+.spinner {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.spinner:after {
+  content: " ";
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 8px solid $ricardo-orange;
+  border-color: $ricardo-orange transparent $ricardo-orange;
+  animation: spinner 1.2s linear infinite;
+
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

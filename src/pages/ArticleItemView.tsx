@@ -5,23 +5,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchArticleById } from "../redux/actions/articlesActions";
 import { RootState } from "../redux/store/store";
-import { ArticleInitialState } from "../types/reducers.interface";
+import {
+  ArticleInitialState,
+  UIinitialState,
+} from "../types/reducers.interface";
 const ArticleItemView: React.FC<{}> = (props) => {
   const descriptionContainer = useRef<HTMLDivElement>(null)!;
   const { articleId } = useParams<{ articleId: string }>();
   const articlesDispatch = useDispatch();
 
-  
   const articleState: ArticleInitialState = useSelector(
     (state: RootState) => state.articles
   );
 
+  const uiState: UIinitialState = useSelector(
+    (state: RootState) => state.uiLoading
+  );
 
+  const { loadingHTTP } = uiState;
   const { sellerById, articlesById } = articleState;
 
   const setInnerHtml = useCallback(
     (mark: string) => {
       if (!mark) {
+        return;
+      }
+      if (descriptionContainer.current === null) {
         return;
       }
       descriptionContainer.current!.innerHTML = mark;
@@ -34,39 +43,45 @@ const ArticleItemView: React.FC<{}> = (props) => {
   }, [articleId, articlesDispatch]);
 
   useEffect(() => {
-    setInnerHtml(articlesById.descriptionHtml);
-  }, [articlesById.descriptionHtml, setInnerHtml]);
+    if (!loadingHTTP) {
+      setInnerHtml(articlesById.descriptionHtml);
+    }
+  }, [articlesById.descriptionHtml, setInnerHtml, loadingHTTP]);
   return (
     <div className="container">
-      <div className="card">
-        <div className="card-container">
-          <img
-            src={articlesById.imageUrl}
-            alt="test"
-            className="card-container__image"
-          />
-        </div>
-        <div className="card-body">
-          <div className="card-body__title">
-            <h2>{articlesById.title}</h2>
+      {!loadingHTTP ? (
+        <div className="card">
+          <div className="card-container">
+            <img
+              src={articlesById.imageUrl}
+              alt="test"
+              className="card-container__image"
+            />
           </div>
-          <div className="card-body__info">
-            <div className="">
-              <p>
-                <span> Seller:</span> {sellerById.name}
-              </p>
-              <p>
-                <span> Price: </span>
-                {articlesById.price} CHF
-              </p>
+          <div className="card-body">
+            <div className="card-body__title">
+              <h2>{articlesById.title}</h2>
             </div>
+            <div className="card-body__info">
+              <div className="">
+                <p>
+                  <span> Seller:</span> {sellerById.name}
+                </p>
+                <p>
+                  <span> Price: </span>
+                  {articlesById.price} CHF
+                </p>
+              </div>
+            </div>
+            <div
+              ref={descriptionContainer}
+              className="card-body__description"
+            ></div>
           </div>
-          <div
-            ref={descriptionContainer}
-            className="card-body__description"
-          ></div>
         </div>
-      </div>
+      ) : (
+        <div className="spinner"></div>
+      )}
     </div>
   );
 };

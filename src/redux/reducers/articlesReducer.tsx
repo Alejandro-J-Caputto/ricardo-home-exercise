@@ -40,6 +40,6 @@ export const articlesReducer = (
         sellerById: { ...action.payload },
       };
     default:
-      return initialState;
+      return state;
   }
 };

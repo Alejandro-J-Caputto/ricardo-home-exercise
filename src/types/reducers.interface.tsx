@@ -5,3 +5,9 @@ export interface ArticleInitialState {
     articlesById: ArticleDetails ,
     sellerById: User
 }
+
+export interface UIinitialState {
+    loadingHTTP: boolean,
+    loadingApp: boolean,
+    
+}

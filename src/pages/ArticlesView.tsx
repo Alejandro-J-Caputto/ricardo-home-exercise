@@ -4,15 +4,19 @@ import { useParams } from "react-router-dom";
 import ArticlesContainer from "../components/articles/ArticlesContainer";
 import { fetchAllArticlesByText } from "../redux/actions/articlesActions";
 import { RootState } from "../redux/store/store";
-import { ArticleInitialState } from "../types/reducers.interface";
+import { ArticleInitialState, UIinitialState } from "../types/reducers.interface";
+
 
 const ArticlesView: React.FC<{}> = (props) => {
   const { searchText: enteredText } = useParams<{ searchText: string }>();
-  const isLoading = false;
   const articlesDispatch = useDispatch();
   const articlesState: ArticleInitialState = useSelector(
     (state: RootState) => state.articles
   );
+  const uiState: UIinitialState = useSelector(
+    (state: RootState) => state.uiLoading
+  );
+  const {loadingHTTP} = uiState;
   const { articles } = articlesState;
   useEffect(() => {
     articlesDispatch(fetchAllArticlesByText(enteredText));
@@ -20,7 +24,7 @@ const ArticlesView: React.FC<{}> = (props) => {
   return (
     <>
       <section className="container">
-        <ArticlesContainer items={articles} isLoading={isLoading} />
+        <ArticlesContainer items={articles} isLoading={loadingHTTP} />
       </section>
     </>
   );

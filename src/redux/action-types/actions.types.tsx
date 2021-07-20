@@ -14,8 +14,8 @@ export const UINotificationTypes = {
 };
 
 export const UILoadingTypes = {
-  uiLoadingMain: "[UI] Loads while check the current token",
-  uiLoadingSmall: "[UI] For small operations",
+  uiLoadingApp: "[UI] Loads while check the current token",
+  uiLoadingHttp: "[UI] For small operations",
   uiSetError: "[UI] Set Error",
   uiRemoveError: "[UI] Remove Error",
 };
