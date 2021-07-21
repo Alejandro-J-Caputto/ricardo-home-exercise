@@ -1,0 +1,53 @@
+.marked-items__list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  list-style: none;
+  // height: 100%;
+}
+
+.marked-item {
+  background-color: $background-nav;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  height: 200px;
+  width: 100%;
+  @include responsive(phone) {
+    flex-direction: column;
+    height: 600px;
+  }
+  & > *:not(.marked-item__img) {
+    align-self: center;
+    text-align: center;
+  }
+  &__img {
+    border-radius: 8px;
+    overflow: hidden;
+    flex: 0 0 25%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    @include responsive(phone) {
+      flex: 0 0 50%;
+    }
+  }
+  &__title {
+    flex: 0 0 30%;
+    @include responsive(phone) {
+      flex: 0 0 10%;
+    }
+  }
+  &__date {
+    flex: 0 0 15%;
+  }
+  &__price {
+    flex: 0 0 10%;
+  }
+  & &__unselect {
+    flex: 0 0 10%;
+  }
+}

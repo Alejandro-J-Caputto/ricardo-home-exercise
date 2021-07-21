@@ -5,14 +5,14 @@ const NavArticles: React.FC = () => {
     <nav className="merkliste-nav">
       <ul className="merkliste-nav__list">
         <NavLink
-          activeClassName=""
+          activeClassName="active-link"
           className="merkliste-nav__list-item"
           to="/home-exercise/merkliste/saved"
         >
           <span>ARTICLES</span>
         </NavLink>
         <NavLink
-          activeClassName=""
+          activeClassName="active-link"
           className="merkliste-nav__list-item"
           to="/home-exercise/merkliste/visited"
         >

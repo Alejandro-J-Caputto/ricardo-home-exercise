@@ -17,8 +17,26 @@
   }
 }
 .nav {
+  text-align: end;
   flex: 0 0 80%;
+
   @include responsive(tab-port) {
     flex: unset;
+  }
+  &-list {
+    height: 100%;
+  }
+  &-item {
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: teal;
+    color: whitesmoke;
+
+    padding: 2rem;
+    height: 95%;
+    width: 20rem;
+    margin-right: 5px;
   }
 }

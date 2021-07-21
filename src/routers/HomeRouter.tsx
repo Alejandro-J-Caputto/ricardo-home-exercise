@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   Redirect,
   Route,
@@ -9,8 +11,13 @@ import ArticleItemView from "../pages/ArticleItemView";
 import ArticlesView from "../pages/ArticlesView";
 import Merkliste from "../pages/Merkliste";
 import NotFound404 from "../pages/NotFound404";
+import { getSelectedArticlesIdAsync } from "../redux/actions/articlesActions";
 
 const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
+  const dbDispatchLocalStorage = useDispatch();
+ useEffect(() => {
+    dbDispatchLocalStorage(getSelectedArticlesIdAsync())
+  }, [dbDispatchLocalStorage])
   return (
     <>
       <Switch>
