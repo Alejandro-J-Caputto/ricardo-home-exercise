@@ -49,5 +49,9 @@
   }
   & &__unselect {
     flex: 0 0 10%;
+    i {
+      color: chocolate;
+      cursor: pointer;
+    }
   }
 }

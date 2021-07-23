@@ -98,9 +98,12 @@ export const setArticleIdAsync = (id: string, article: SearchArticle) => {
           "itemsDBLocal",
           JSON.stringify(unselectItemRemoved)
         );
-
         dispatch(setArticleID(unselectItemID));
-        dispatch(setArticleItemLocal(unselectItemRemoved));
+        dispatch(
+          setArticleItemLocal(
+            unselectItemRemoved.length === 0 ? [] : unselectItemRemoved
+          )
+        );
         return;
       }
 

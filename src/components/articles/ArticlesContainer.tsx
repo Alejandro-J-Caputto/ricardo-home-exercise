@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSelectedArticlesIdAsync, postItemLocalAsync, setArticleIdAsync } from "../../redux/actions/articlesActions";
+import {
+  getSelectedArticlesIdAsync,
+  postItemLocalAsync,
+  setArticleIdAsync,
+} from "../../redux/actions/articlesActions";
 import { RootState } from "../../redux/store/store";
 
 import { SearchArticle } from "../../types/response.types";
@@ -12,18 +16,19 @@ const ArticlesContainer: React.FC<{
 }> = (props) => {
   const { items, isLoading } = props;
   const dbDispatchLocalStorage = useDispatch();
-  const [isSelected, setIsSelected] = useState(false);
-  
-  const storeItemHandler = (article:SearchArticle) => {
-    dbDispatchLocalStorage(postItemLocalAsync(article))
-  }
-  const selectedItems = useSelector((state:RootState) => state.articles.savedArticlesIDs)
-  const selectItemHandler = (id:string, article: SearchArticle) => {
-    dbDispatchLocalStorage(setArticleIdAsync(id, article))
-  }
+
+  const storeItemHandler = (article: SearchArticle) => {
+    dbDispatchLocalStorage(postItemLocalAsync(article));
+  };
+  const selectedItems = useSelector(
+    (state: RootState) => state.articles.savedArticlesIDs
+  );
+  const selectItemHandler = (id: string, article: SearchArticle) => {
+    dbDispatchLocalStorage(setArticleIdAsync(id, article));
+  };
   useEffect(() => {
-    dbDispatchLocalStorage(getSelectedArticlesIdAsync())
-  }, [dbDispatchLocalStorage])
+    dbDispatchLocalStorage(getSelectedArticlesIdAsync());
+  }, [dbDispatchLocalStorage]);
   return (
     <>
       {!isLoading ? (
@@ -34,7 +39,15 @@ const ArticlesContainer: React.FC<{
         {isLoading ? (
           <div className="spinner"></div>
         ) : (
-          items.map((el) => <ArticleItem key={el.id} itemsContent={el} onSelect={selectItemHandler} onStoreItem={storeItemHandler} selected={selectedItems.includes(`${el.id}`) ? true : false} />)
+          items.map((el) => (
+            <ArticleItem
+              key={el.id}
+              itemsContent={el}
+              onSelect={selectItemHandler}
+              onStoreItem={storeItemHandler}
+              selected={selectedItems.includes(`${el.id}`) ? true : false}
+            />
+          ))
         )}
       </div>
     </>
