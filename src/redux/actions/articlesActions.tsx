@@ -6,7 +6,7 @@ import {
 } from "../../types/response.types";
 import { httpRequest } from "../../utils/httpRequest";
 import { ArticleTypes } from "../action-types/actions.types";
-import { AppDispatch } from "../store/store";
+import { AppDispatch, RootState } from "../store/store";
 import { setLoadingHttp } from "./uiActions";
 
 export const fetchAllArticlesByText = (value: string) => {
@@ -69,7 +69,7 @@ export const setArticleIdAsync = (id: string, article: SearchArticle) => {
 
     if (
       !localStorage.getItem("selectedItems") &&
-      !localStorage.getItem("selectedItems")
+      !localStorage.getItem("itemsDBLocal")
     ) {
       selectedItemsArr = [];
       selectedItemsArr.push(id);
@@ -82,16 +82,57 @@ export const setArticleIdAsync = (id: string, article: SearchArticle) => {
       selectedItemsArr = JSON.parse(
         localStorage.getItem("selectedItems")!
       ) as string[];
-      selectedItemsArr.push(id);
-      localStorage.setItem("selectedItems", JSON.stringify(selectedItemsArr));
       itemsDBLocal = JSON.parse(
         localStorage.getItem("itemsDBLocal")!
       ) as SearchArticle[];
+
+      if (selectedItemsArr.includes(id)) {
+        const unselectItemID = selectedItemsArr.filter(
+          (el: string) => el !== id
+        );
+        const unselectItemRemoved = itemsDBLocal.filter(
+          (art: SearchArticle) => art.id !== article.id
+        );
+        localStorage.setItem("selectedItems", JSON.stringify(unselectItemID));
+        localStorage.setItem(
+          "itemsDBLocal",
+          JSON.stringify(unselectItemRemoved)
+        );
+
+        dispatch(setArticleID(unselectItemID));
+        dispatch(setArticleItemLocal(unselectItemRemoved));
+        return;
+      }
+
+      selectedItemsArr.push(id);
+      localStorage.setItem("selectedItems", JSON.stringify(selectedItemsArr));
       itemsDBLocal.push(article);
       localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
       dispatch(setArticleID(selectedItemsArr));
       dispatch(setArticleItemLocal(itemsDBLocal));
     }
+  };
+};
+
+export const unsetSelectedArticleAsync = (id: string) => {
+  return async (dispatch: AppDispatch, getState: RootState) => {
+    const articlesState = getState.articles;
+    const articlesIDs = [...articlesState.savedArticlesIDs];
+    const articlesDBLocal = [...articlesState.selectedItemsLocalStorage];
+    const updatedArticlesID = articlesIDs.filter((article) => article !== id);
+    const updatedArticlesDB = articlesDBLocal.filter(
+      (articleDB: SearchArticle) => articleDB.id !== +id
+    );
+    localStorage.setItem(
+      "selectedItems",
+      JSON.stringify(`${updatedArticlesID}`)
+    );
+    localStorage.setItem(
+      "itemsDBLocal",
+      JSON.stringify(`${updatedArticlesDB}`)
+    );
+    dispatch(setArticleID(updatedArticlesID));
+    dispatch(setArticleItemLocal(updatedArticlesID));
   };
 };
 

@@ -6,7 +6,7 @@ export const ArticleTypes = {
   articleFilterByName: "[Articles] Filter article by name",
   articleUserSeller: "[Articles] User seller by ID",
   articleStoreId: "[Article] Store ID Localstorage",
-  articleStoreItem: "[Article] Store ITEM Localstorage"
+  articleStoreItem: "[Article] Store ITEM Localstorage",
 };
 
 export const UINotificationTypes = {

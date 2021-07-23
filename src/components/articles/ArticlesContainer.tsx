@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSelectedArticlesIdAsync, postItemLocalAsync, setArticleIdAsync } from "../../redux/actions/articlesActions";
 import { RootState } from "../../redux/store/store";
@@ -12,6 +12,8 @@ const ArticlesContainer: React.FC<{
 }> = (props) => {
   const { items, isLoading } = props;
   const dbDispatchLocalStorage = useDispatch();
+  const [isSelected, setIsSelected] = useState(false);
+  
   const storeItemHandler = (article:SearchArticle) => {
     dbDispatchLocalStorage(postItemLocalAsync(article))
   }
