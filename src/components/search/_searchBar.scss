@@ -62,7 +62,7 @@
         color: whitesmoke;
       }
       &:disabled {
-        background-color: rgba($color: salmon, $alpha: .5);
+        background-color: rgba($color: salmon, $alpha: 0.5);
         cursor: not-allowed;
         color: navy;
       }
@@ -80,3 +80,4 @@
     }
   }
 }
+
