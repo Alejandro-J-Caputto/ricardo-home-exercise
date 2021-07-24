@@ -1,7 +1,7 @@
 .searchBar {
   background-color: $background-main;
   height: 100px;
-  margin-top: 5rem;
+  margin-top: 1rem;
   margin-bottom: 5rem;
   &-group {
     @include absoluteCenter;
@@ -30,6 +30,7 @@
       grid-column: colum-1-start / colum-2-start;
       font-size: inherit;
       font-family: inherit;
+      overflow: hidden;
       padding: 1.4rem;
       border-color: $border-frozen-purlple;
       border-radius: 6px;

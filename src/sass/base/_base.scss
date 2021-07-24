@@ -72,15 +72,16 @@ body {
 }
 
 .container-np {
+  position: relative;
   margin: 0 auto;
   max-width: 1100px;
   width: 80%;
   @include responsive(phone) {
     padding: 30px 0;
-    width: 95%;
+    width: 100%;
   }
   @include responsive(big-desktop) {
-    padding: 200px 0;
+    // padding: 200px 0;
   }
   
 }

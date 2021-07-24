@@ -16,16 +16,20 @@ const MainNav: React.FC = () => {
             className="nav-item"
             exact
           >
-            <span>HOME</span>
+            <i className="fas fa-home"></i>
           </NavLink>
           <NavLink
             to="/home-exercise/merkliste/saved"
             activeClassName="active-link"
             className="nav-item"
           >
-            WHISHLIST
+            <i className="fas fa-flag"></i>
           </NavLink>
-          {/* <button className="nav-item">THEME</button> */}
+          <div className="nav-item btn-theme">
+            <i className="fas fa-sun sunny"></i>
+            <i className="fas fa-moon"></i>
+            <button></button>
+          </div>
         </ul>
       </nav>
     </header>

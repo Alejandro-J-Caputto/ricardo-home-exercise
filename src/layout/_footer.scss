@@ -1,0 +1,27 @@
+.footer {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    height: 20vh;
+    width: 100%;
+    @include responsive(phone) {
+        margin: unset;
+        height: 20vh;
+    }
+}
+.social {
+    position: relative;
+    height: 100%;
+    &-list {
+        font-size: 4rem;
+        @include absoluteCenter;
+        margin: 0 auto;
+        width: 60%;
+        display: flex;
+        list-style: none;
+        justify-content: space-around;
+        & > a, a:visited, a:link, a:active {
+            text-decoration: none;
+            color: $ricardo-orange;
+        }
+    }
+}

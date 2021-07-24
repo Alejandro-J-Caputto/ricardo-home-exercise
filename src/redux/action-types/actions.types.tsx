@@ -7,6 +7,7 @@ export const ArticleTypes = {
   articleUserSeller: "[Articles] User seller by ID",
   articleStoreId: "[Article] Store ID Localstorage",
   articleStoreItem: "[Article] Store ITEM Localstorage",
+  articlesDummyLanding: "[Article] Set a few elements on the main view"
 };
 
 export const UINotificationTypes = {

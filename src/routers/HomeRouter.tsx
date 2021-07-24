@@ -1,34 +1,39 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {
-  Redirect,
-  Route,
-  RouteComponentProps,
-  Switch,
-} from "react-router-dom";
-import SearchBar from "../components/search/SearchBar";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, RouteComponentProps, Switch } from "react-router-dom";
 import ArticleItemView from "../pages/ArticleItemView";
 import ArticlesView from "../pages/ArticlesView";
+import DummyLandingPage from "../pages/DummyLandingPage";
 import Merkliste from "../pages/Merkliste";
 import NotFound404 from "../pages/NotFound404";
-import { getSelectedArticlesIdAsync } from "../redux/actions/articlesActions";
+import {
+  fetchAllArticlesByText,
+  getSelectedArticlesIdAsync,
+} from "../redux/actions/articlesActions";
+import { RootState } from "../redux/store/store";
+import { ArticleInitialState } from "../types/reducers.interface";
 
 const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
   const dbDispatchLocalStorage = useDispatch();
- useEffect(() => {
-    dbDispatchLocalStorage(getSelectedArticlesIdAsync())
-  }, [dbDispatchLocalStorage])
+  const articlesState: ArticleInitialState = useSelector(
+    (state: RootState) => state.articles
+  );
+  const { articles } = articlesState;
+  useEffect(() => {
+    dbDispatchLocalStorage(fetchAllArticlesByText("nintendo"));
+    dbDispatchLocalStorage(getSelectedArticlesIdAsync());
+  }, [dbDispatchLocalStorage]);
   return (
     <>
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/home-exercise"/>
+          <Redirect to="/home-exercise" />
         </Route>
         <Route path="/home-exercise/merkliste">
           <Merkliste />
         </Route>
         <Route exact path="/home-exercise">
-          <SearchBar />
+          <DummyLandingPage dummyItems={articles} />
         </Route>
         <Route path="/home-exercise/search/:searchText">
           <ArticlesView />

@@ -6,9 +6,11 @@
 //LAYOUT
 @import "../layout/ricardoWrapper";
 @import "../layout/mainNav";
+@import "../layout/footer";
 // @import "../layout/navArticles";
 //PAGES
 @import "../pages/articlesView";
+@import "../pages/dummyLandingPage";
 @import "../pages/articleItemView";
 @import "../pages/merkListe";
 @import "../pages/notFound404";

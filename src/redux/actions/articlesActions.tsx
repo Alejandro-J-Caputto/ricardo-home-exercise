@@ -177,6 +177,7 @@ export const postItemLocalAsync = (article: SearchArticle) => {
   };
 };
 
+
 export const setArticles = (articles: SearchArticle[]) => ({
   type: ArticleTypes.articlesGetBySearch,
   payload: articles,
