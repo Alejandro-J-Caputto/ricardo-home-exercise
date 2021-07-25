@@ -18,6 +18,9 @@ const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
   const articlesState: ArticleInitialState = useSelector(
     (state: RootState) => state.articles
   );
+  const UI = useSelector((state: RootState) => state.uiLoading);
+
+  const { uiTheme } = UI;
   const { articles } = articlesState;
   useEffect(() => {
     dbDispatchLocalStorage(fetchAllArticlesByText("nintendo"));
@@ -30,19 +33,19 @@ const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
           <Redirect to="/home-exercise" />
         </Route>
         <Route path="/home-exercise/merkliste">
-          <Merkliste />
+          <Merkliste theme={uiTheme} />
         </Route>
         <Route exact path="/home-exercise">
-          <DummyLandingPage dummyItems={articles} />
+          <DummyLandingPage theme={uiTheme} dummyItems={articles} />
         </Route>
         <Route path="/home-exercise/search/:searchText">
-          <ArticlesView />
+          <ArticlesView theme={uiTheme} />
         </Route>
         <Route path="/home-exercise/article/:articleId">
-          <ArticleItemView />
+          <ArticleItemView theme={uiTheme} />
         </Route>
         <Route path="*">
-          <NotFound404 />
+          <NotFound404 theme={uiTheme} />
         </Route>
       </Switch>
     </>

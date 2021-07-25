@@ -4,19 +4,20 @@ import { SearchArticle } from "../../types/response.types";
 const ArticleItem: React.FC<{
   itemsContent: SearchArticle;
   selected: boolean;
-  onSelect: (id: string, article:SearchArticle) => void;
+  onSelect: (id: string, article: SearchArticle) => void;
   onStoreItem: (article: SearchArticle) => void;
+  uiTheme: boolean;
 }> = (props) => {
   const { buyNowPrice, endDate, id, imageUrl, title } = props.itemsContent;
   const dateFormat = new Date(endDate).toISOString().split("T");
   const date = dateFormat[0];
   const time = dateFormat[1].slice(0, 5);
   return (
-    <div className="article" data-id={id}>
+    <div className={`article ${props.uiTheme && "dark"}`} data-id={id}>
       <div className="article-head">
         <div className="article-head__flag">
           <i
-            onClick={() => props.onSelect(`${id}`, {...props.itemsContent})}
+            onClick={() => props.onSelect(`${id}`, { ...props.itemsContent })}
             className={!props.selected ? "far fa-flag" : "fas fa-flag red"}
           ></i>
         </div>

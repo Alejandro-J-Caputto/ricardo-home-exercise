@@ -8,6 +8,9 @@
   border-radius: 8px;
   background-color: $background-main;
   box-shadow: 10px 5px 5px rgba(black, 0.2);
+  &.dark {
+    background-color: $theme-background-dark-soft;
+  }
   & a:visited, a:link, a:hover, a:active {
     text-decoration: none;
     color: unset;

@@ -1,10 +1,11 @@
 import { AnyAction } from "redux";
 import { UIinitialState } from "../../types/reducers.interface";
-import { UILoadingTypes } from "../action-types/actions.types";
+import { UI, UILoadingTypes } from "../action-types/actions.types";
 
 const initialState: UIinitialState = {
   loadingHTTP: false,
   loadingApp: false,
+  uiTheme: false,
 };
 
 export const uiReducer = (
@@ -22,7 +23,11 @@ export const uiReducer = (
         ...state,
         loadingApp: !state.loadingApp,
       };
-
+    case UI.uiChangeTheme:
+      return {
+        ...state,
+        uiTheme: !state.uiTheme,
+      };
     default:
       return state;
   }

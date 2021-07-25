@@ -4,8 +4,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  transition: all .3s;
   @include responsive(big-desktop) {
     width: 80%;
     margin: 0 auto;
   }
+}
+.ricardo-wrapper.dark {
+  background-color: $theme-background-dark;
+  color: aliceblue;
 }

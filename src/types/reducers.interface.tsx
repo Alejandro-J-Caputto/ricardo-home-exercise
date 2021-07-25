@@ -11,4 +11,5 @@ export interface ArticleInitialState {
 export interface UIinitialState {
   loadingHTTP: boolean;
   loadingApp: boolean;
+  uiTheme: boolean;
 }

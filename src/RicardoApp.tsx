@@ -14,8 +14,8 @@ import { store } from "./redux/store/store";
 
 const RicardoApp: React.FC = () => {
   return (
-    <RicardoWrapper>
-      <Provider store={store}>
+    <Provider store={store}>
+      <RicardoWrapper>
         <AppRouter>
           <Router>
             <MainNav />
@@ -35,8 +35,8 @@ const RicardoApp: React.FC = () => {
             </Switch>
           </Router>
         </AppRouter>
-      </Provider>
-    </RicardoWrapper>
+      </RicardoWrapper>
+    </Provider>
   );
 };
 

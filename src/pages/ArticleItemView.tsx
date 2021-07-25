@@ -9,7 +9,7 @@ import {
   ArticleInitialState,
   UIinitialState,
 } from "../types/reducers.interface";
-const ArticleItemView: React.FC<{}> = (props) => {
+const ArticleItemView: React.FC<{ theme: boolean }> = (props) => {
   const descriptionContainer = useRef<HTMLDivElement>(null)!;
   const { articleId } = useParams<{ articleId: string }>();
   const articlesDispatch = useDispatch();
@@ -50,7 +50,7 @@ const ArticleItemView: React.FC<{}> = (props) => {
   return (
     <div className="container">
       {!loadingHTTP ? (
-        <div className="card">
+        <div className={`card ${props.theme && 'dark'}`}>
           <div className="card-container">
             <img
               src={articlesById.imageUrl}

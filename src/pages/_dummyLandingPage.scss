@@ -73,7 +73,6 @@
   @include responsive(phone-land) {
     // display: flex;
     margin-top: 20rem;
-    background-color: violet;
   }
   @include responsive(tab-port) {
       margin-bottom: 70rem;
@@ -102,6 +101,9 @@
   flex-direction: column;
   opacity: 0;
   transform: translateY(10%);
+  &.dark {
+    background-color: $theme-background-dark-soft;
+  }
   @include responsive(tab-port) {
     position: static;
     margin: 0 auto;

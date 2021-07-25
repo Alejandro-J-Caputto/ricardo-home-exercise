@@ -1,10 +1,11 @@
 .header {
-  // position: fixed;
   width: 100%;
-  background-color: $background-main;
   display: flex;
   height: 60px;
   justify-content: space-between;
+}
+.header.dark {
+  background-color: $theme-background-dark;
 }
 .logo {
   flex: 0 0 20%;
@@ -78,9 +79,14 @@
         cursor: pointer;
         transition: all .3s ;
         border: yellowgreen;
+        transition: all .3s;
         &:hover {
           border: 5px solid yellowgreen;
         }        
+      }
+      button.dark {
+        transform: translateX(90%);
+
       }
       // & button:focus {
       //   transform: translateX(100%);

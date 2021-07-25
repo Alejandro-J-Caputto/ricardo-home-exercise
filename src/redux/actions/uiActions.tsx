@@ -1,4 +1,4 @@
-import { UILoadingTypes } from "../action-types/actions.types";
+import { UI, UILoadingTypes } from "../action-types/actions.types";
 
 
 export const setLoadingHttp = () => ({
@@ -7,5 +7,10 @@ export const setLoadingHttp = () => ({
 })
 export const setLoadingApp = () => ({
     type: UILoadingTypes.uiLoadingApp,
+    payload: null
+})
+
+export const toggleTheme = () => ({
+    type: UI.uiChangeTheme,
     payload: null
 })

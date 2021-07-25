@@ -10,7 +10,7 @@ import smileGirl from "../assets/img/smile-girl.jpg";
 import goodSmile from "../assets/img/ricardo-good-smile.jpg";
 import sales from "../assets/img/always-black.jpg";
 
-const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
+const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[]; theme:boolean; }> = (props) => {
   const { setObsItem } = useIntersection({ threshold: 0.05 });
 
   return (
@@ -18,8 +18,8 @@ const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
       <SearchBar />
       <main className="container-np">
         <HeroSection />
-        <section ref={setObsItem} className="features">
-          <div className="card-home card-home--1">
+        <section ref={setObsItem} className={`features ${props.theme && "dark"}`}>
+          <div className={`card-home card-home--1 ${props.theme && 'dark'}`}>
             <div className="card-home-head">
               <img
                 src={sales}
@@ -41,7 +41,7 @@ const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
             </div>
           </div>
 
-          <div className="card-home card-home--2">
+          <div className={`card-home card-home--2 ${props.theme && 'dark'}`}>
             <div className="card-home-head">
               <img
                 src={smileGirl}
@@ -62,7 +62,7 @@ const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
               </div>
             </div>
           </div>
-          <div className="card-home card-home--3">
+          <div className={`card-home card-home--3 ${props.theme && 'dark'}`}>
             <div className="card-home-head">
               <img
                 src={lady}
@@ -83,7 +83,7 @@ const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
               </div>
             </div>
           </div>
-          <div className="card-home card-home--4">
+          <div className={`card-home card-home--4 ${props.theme && 'dark'}`}>
             <div className="card-home-head">
               <img
                 src={goodSmile}
