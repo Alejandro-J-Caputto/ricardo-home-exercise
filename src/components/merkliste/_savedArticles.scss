@@ -15,6 +15,9 @@
   padding: 2rem;
   height: 200px;
   width: 100%;
+  &.dark {
+    background-color: $theme-background-dark-soft;
+  }
   @include responsive(phone) {
     flex-direction: column;
     height: 600px;
@@ -49,5 +52,9 @@
   }
   & &__unselect {
     flex: 0 0 10%;
+    i {
+      color: chocolate;
+      cursor: pointer;
+    }
   }
 }

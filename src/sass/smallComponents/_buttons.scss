@@ -11,3 +11,12 @@
     border-radius: 8px;
     cursor: pointer;
 }
+.load-next {
+    padding: 5rem;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    & button {
+        padding: 3rem;
+    }
+}

@@ -3,7 +3,7 @@ import SavedArticles from "../components/merkliste/SavedArticles";
 import VisitedArticles from "../components/merkliste/VisitedArticles";
 import NavArticles from "../layout/NavArticles";
 
-const Merkliste: React.FC = () => {
+const Merkliste: React.FC<{theme:boolean}> = (props) => {
   return (
     <div className="container-centered">
       <div className="merkliste">

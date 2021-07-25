@@ -1,10 +1,11 @@
 .header {
-  // position: fixed;
   width: 100%;
-  background-color: $background-main;
   display: flex;
   height: 60px;
   justify-content: space-between;
+}
+.header.dark {
+  background-color: $theme-background-dark;
 }
 .logo {
   flex: 0 0 20%;
@@ -25,18 +26,84 @@
   }
   &-list {
     height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    // align-items: center;
   }
   &-item {
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-    display: inline-block;
-    background-color: teal;
-    color: whitesmoke;
-
-    padding: 2rem;
-    height: 95%;
-    width: 20rem;
+    position: relative;
+    align-self: center;
+    width: 10rem;
+    height: 100%;    
     margin-right: 5px;
+    color: teal;
+    font-size: 3rem;
+    transition: all .3s;
+    i:not(.btn-theme > i) {
+      position: absolute;
+      @include absoluteCenter
+    }
+    &:hover:not(.btn-theme) {
+      background-color: $ricardo-orange;
+      color: whitesmoke;
+    }
+    &.btn-theme {
+      background-color: gray;
+      height: 50%;
+      display: flex;
+      position: relative;
+      text-align: center;
+      align-items: center;
+      border-radius:20px;
+      cursor: pointer;
+      width: 50px;
+      i {
+        font-size: 2rem;
+        flex: 0 0 50%;
+      }
+      
+      i.fa-sun {
+        color: yellow;
+      }
+      i.fa-moon {
+        color: whitesmoke;
+      }
+
+      button {
+        position: absolute;
+        border-radius: 50%;
+        height: 92%;
+        left: 2%;
+        width: 50%;
+        cursor: pointer;
+        transition: all .3s ;
+        border: yellowgreen;
+        transition: all .3s;
+        &:hover {
+          border: 5px solid yellowgreen;
+        }        
+      }
+      button.dark {
+        transform: translateX(90%);
+
+      }
+      // & button:focus {
+      //   transform: translateX(100%);
+      // }
+      
+    }
   }
+  
 }
+.theme-toggle {
+  // display: inline-block;
+  background-color: yellow;
+  // height: 100%;
+}
+.btn-theme {
+  // display: inline-block;
+  // margin-top: 5rem;
+}
+
+

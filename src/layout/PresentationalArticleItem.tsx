@@ -1,26 +1,18 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { SearchArticle } from "../../types/response.types";
+import { SearchArticle } from "../types/response.types";
 
-const ArticleItem: React.FC<{
+export const PresentationalArticleItem: React.FC<{
   itemsContent: SearchArticle;
-  selected: boolean;
-  onSelect: (id: string, article: SearchArticle) => void;
-  onStoreItem: (article: SearchArticle) => void;
-  uiTheme: boolean;
+  uiTheme:boolean
 }> = (props) => {
   const { buyNowPrice, endDate, id, imageUrl, title } = props.itemsContent;
   const dateFormat = new Date(endDate).toISOString().split("T");
   const date = dateFormat[0];
   const time = dateFormat[1].slice(0, 5);
   return (
-    <div className={`article ${props.uiTheme && "dark"}`} data-id={id}>
+    <div className= {`article ${props.uiTheme && 'dark'}`} data-id={id}>
       <div className="article-head">
-        <div className="article-head__flag">
-          <i
-            onClick={() => props.onSelect(`${id}`, { ...props.itemsContent })}
-            className={!props.selected ? "far fa-flag" : "fas fa-flag red"}
-          ></i>
-        </div>
         <img src={imageUrl} alt="test article" className="article-head__img" />
       </div>
       <div className="article-body">
@@ -48,4 +40,3 @@ const ArticleItem: React.FC<{
     </div>
   );
 };
-export default ArticleItem;

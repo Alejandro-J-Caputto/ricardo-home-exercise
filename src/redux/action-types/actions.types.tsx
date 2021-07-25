@@ -6,7 +6,8 @@ export const ArticleTypes = {
   articleFilterByName: "[Articles] Filter article by name",
   articleUserSeller: "[Articles] User seller by ID",
   articleStoreId: "[Article] Store ID Localstorage",
-  articleStoreItem: "[Article] Store ITEM Localstorage"
+  articleStoreItem: "[Article] Store ITEM Localstorage",
+  articlesDummyLanding: "[Article] Set a few elements on the main view",
 };
 
 export const UINotificationTypes = {
@@ -20,6 +21,10 @@ export const UILoadingTypes = {
   uiLoadingHttp: "[UI] For small operations",
   uiSetError: "[UI] Set Error",
   uiRemoveError: "[UI] Remove Error",
+};
+
+export const UI = {
+  uiChangeTheme: "[UI] Toggle theme",
 };
 
 export const AuthTypes = {

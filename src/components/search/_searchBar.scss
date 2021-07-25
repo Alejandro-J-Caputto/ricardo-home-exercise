@@ -1,7 +1,7 @@
 .searchBar {
-  background-color: $background-main;
+  // background-color: $background-main;
   height: 100px;
-  margin-top: 5rem;
+  margin-top: 1rem;
   margin-bottom: 5rem;
   &-group {
     @include absoluteCenter;
@@ -30,12 +30,18 @@
       grid-column: colum-1-start / colum-2-start;
       font-size: inherit;
       font-family: inherit;
+      overflow: hidden;
       padding: 1.4rem;
       border-color: $border-frozen-purlple;
       border-radius: 6px;
       @include responsive(tab-port) {
         grid-row: row-1-start;
       }
+      // &.dark {
+      //   background-color: burlywood;
+      //   color: aliceblue;
+      // }
+     
     }
     &__input:focus {
       outline-color: $border-frozen-purlple;
@@ -57,14 +63,23 @@
       text-transform: uppercase;
       background-color: rgba($color: $border-frozen-purlple, $alpha: 0.07);
       transition: all 0.3s;
+      &.dark {
+        color: aliceblue;
+        border: none;
+        background-color: purple;
+      }
       &:hover {
         background-color: rgba($color: $border-frozen-purlple, $alpha: 0.8);
         color: whitesmoke;
       }
       &:disabled {
-        background-color: rgba($color: salmon, $alpha: .5);
+        background-color: rgba($color: salmon, $alpha: 0.5);
         cursor: not-allowed;
         color: navy;
+        &.dark {
+          color: aliceblue;
+          border: none;
+        }
       }
       @include responsive(tab-port) {
         grid-row: row-1-start;
@@ -80,3 +95,4 @@
     }
   }
 }
+

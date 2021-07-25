@@ -1,11 +1,14 @@
-
 import { SearchArticle } from "../../types/response.types";
 
-const SavedItems: React.FC<{itemsContent: SearchArticle}> = (props) => {
-    //TODO: Format date
-    const {id, title, buyNowPrice, endDate, imageUrl} = props.itemsContent;
+const SavedItems: React.FC<{
+  itemsContent: SearchArticle;
+  onSelect: (id: string, article: SearchArticle) => void;
+  uiTheme:boolean
+}> = (props) => {
+  //TODO: Format date
+  const { id, title, buyNowPrice, endDate, imageUrl } = props.itemsContent;
   return (
-    <li className="marked-item" data-id={id}>
+    <li className={`marked-item ${props.uiTheme && 'dark'}`} data-id={id}>
       <div className="marked-item__img">
         <img src={imageUrl} alt="marked pic" />
       </div>
@@ -21,7 +24,10 @@ const SavedItems: React.FC<{itemsContent: SearchArticle}> = (props) => {
         <p>{!buyNowPrice ? "Keine Preis" : buyNowPrice}</p>
       </div>
       <div className="marked-item__unselect">
-        <i className="fas fa-flag"></i>
+        <i
+          className="fas fa-flag red"
+          onClick={() => props.onSelect(`${id}`, { ...props.itemsContent })}
+        ></i>
       </div>
     </li>
   );
