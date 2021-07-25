@@ -33,7 +33,7 @@
 
 html {
   box-sizing: border-box;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: "roboto", "Helvetica", "Arial", sans-serif;
 
   font-size: 62.5%;
   height: 100%;
@@ -79,6 +79,9 @@ body {
   @include responsive(phone) {
     padding: 30px 0;
     width: 100%;
+  }
+  @include responsive(phone-land) {
+    width: 90%;
   }
   @include responsive(big-desktop) {
     // padding: 200px 0;

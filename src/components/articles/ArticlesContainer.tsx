@@ -6,7 +6,6 @@ import {
   setArticleIdAsync,
 } from "../../redux/actions/articlesActions";
 import { RootState } from "../../redux/store/store";
-
 import { SearchArticle } from "../../types/response.types";
 import ArticleItem from "./ArticleItem";
 
@@ -15,10 +14,10 @@ const ArticlesContainer: React.FC<{
   isLoading: boolean;
 }> = (props) => {
   const dbDispatchLocalStorage = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const { items, isLoading } = props;
   const articlesPerPage = 20;
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const limitPage = Math.ceil((items.length + 1) / articlesPerPage);
   const displayedArticles = items.slice(0, articlesPerPage * pageNumber);
 
@@ -99,7 +98,8 @@ const ArticlesContainer: React.FC<{
             <p className="not-found__msg">Not Found</p>
           )}
         </div>
-        {filteredArticles.length ? (
+        {filteredArticles.length &&
+        displayedArticles.length !== items.length ? (
           <div className="load-next">
             <button className="btn btn-card" onClick={pageNumberHandler}>
               LOAD MORE

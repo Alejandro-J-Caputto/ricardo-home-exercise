@@ -9,6 +9,11 @@
       @content;
     }
   }
+  @if $device == phone-land {
+    @media(max-width: 55em) and (orientation: landscape) {
+      @content;
+    }
+  }
   @if $device == tab-port {
     @media (max-width: 56.25em) {
       @content;

@@ -1,19 +1,24 @@
+import React from "react";
 import SearchBar from "../components/search/SearchBar";
+import useIntersection from "../hooks/useIntersection";
 import { HeroSection } from "./HeroSection";
+import { SearchArticle } from "../types/response.types";
+import { PresentationalArticles } from "../layout/PresentationalArticles";
 
 import lady from "../assets/img/buy-old-lady.jpg";
 import smileGirl from "../assets/img/smile-girl.jpg";
 import goodSmile from "../assets/img/ricardo-good-smile.jpg";
 import sales from "../assets/img/always-black.jpg";
-import { SearchArticle } from "../types/response.types";
-import { PresentationalArticles } from "../layout/PresentationalArticles";
+
 const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
+  const { setObsItem } = useIntersection({ threshold: 0.05 });
+
   return (
     <>
       <SearchBar />
       <main className="container-np">
         <HeroSection />
-        <section className="features">
+        <section ref={setObsItem} className="features">
           <div className="card-home card-home--1">
             <div className="card-home-head">
               <img
@@ -35,6 +40,7 @@ const DummyLandingPage: React.FC<{ dummyItems: SearchArticle[] }> = (props) => {
               </div>
             </div>
           </div>
+
           <div className="card-home card-home--2">
             <div className="card-home-head">
               <img

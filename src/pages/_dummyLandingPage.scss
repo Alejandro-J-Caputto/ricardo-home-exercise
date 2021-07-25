@@ -2,7 +2,6 @@
   position: relative;
   text-align: center;
   height: 80vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +29,7 @@
       letter-spacing: 0.2rem;
     }
     @include responsive(tab-land) {
-      //   height: 100%;
+        flex: 0 0 70%;
       span {
         background-color: whitesmoke;
         padding: 1rem;
@@ -69,6 +68,12 @@
   }
   @include responsive(phone) {
       margin-bottom: 60rem;
+      margin-top: 0;
+  }
+  @include responsive(phone-land) {
+    // display: flex;
+    margin-top: 20rem;
+    background-color: violet;
   }
   @include responsive(tab-port) {
       margin-bottom: 70rem;
@@ -95,7 +100,17 @@
   width: 40rem;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(10%);
   @include responsive(tab-port) {
+    position: static;
+    margin: 0 auto;
+  }
+  @include responsive(phone-land) {
+    position: absolute;
+    // display: flex;
+  }
+  @include responsive(phone) {
     position: static;
     margin: 0 auto;
   }
@@ -128,4 +143,15 @@
   height: 100vh;
   background-color: olivedrab;
   width: 100%;
+}
+
+
+.background-red {
+  background-color: orangered;
+}
+
+@include responsive(phone) {
+  .default-items {
+    transform: translateY(-2%);
+  }
 }

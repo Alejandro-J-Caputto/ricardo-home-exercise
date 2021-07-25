@@ -6,6 +6,7 @@
     @include responsive(phone) {
         margin: unset;
         height: 20vh;
+        transform: translateY(-35%);
     }
 }
 .social {
