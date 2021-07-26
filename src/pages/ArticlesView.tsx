@@ -26,7 +26,7 @@ const ArticlesView: React.FC<{ theme: boolean }> = (props) => {
   return (
     <>
       <section className="container">
-        <ArticlesContainer items={articles} isLoading={loadingHTTP} />
+        <ArticlesContainer theme={props.theme} items={articles} isLoading={loadingHTTP} />
       </section>
     </>
   );

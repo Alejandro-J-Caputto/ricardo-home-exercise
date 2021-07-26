@@ -11,11 +11,11 @@ const DummyLandingPage: React.FC<{
 }> = (props) => {
   return (
     <>
-      <SearchBar />
+      <SearchBar theme={props.theme}/>
       <main className="container-np">
         <HeroSection />
         <CardGridIntersection theme={props.theme} />
-        <PresentationalArticles dummyItems={props.dummyItems} />
+        <PresentationalArticles theme={props.theme} dummyItems={props.dummyItems} />
       </main>
     </>
   );

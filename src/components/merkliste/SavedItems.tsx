@@ -1,14 +1,14 @@
 import { SearchArticle } from "../../types/response.types";
 
 const SavedItems: React.FC<{
+  theme:boolean;
   itemsContent: SearchArticle;
   onSelect: (id: string, article: SearchArticle) => void;
-  uiTheme:boolean
 }> = (props) => {
   //TODO: Format date
   const { id, title, buyNowPrice, endDate, imageUrl } = props.itemsContent;
   return (
-    <li className={`marked-item ${props.uiTheme && 'dark'}`} data-id={id}>
+    <li className={`marked-item ${props.theme && 'dark'}`} data-id={id}>
       <div className="marked-item__img">
         <img src={imageUrl} alt="marked pic" />
       </div>

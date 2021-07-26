@@ -2,7 +2,7 @@ import { Redirect, Route, RouteComponentProps, Switch } from "react-router-dom";
 import { LoginForm } from "../components/auth/LoginForm";
 import { RegisterForm } from "../components/auth/RegisterForm";
 
-const AuthRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
+const AuthRouter: React.FC<{ routing: RouteComponentProps, theme:boolean }> = (props) => {
   return (
     <Switch>
       <Route exact path="/auth/login" component={LoginForm} />

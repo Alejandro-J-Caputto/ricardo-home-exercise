@@ -5,11 +5,8 @@ import { RootState } from "../redux/store/store";
 import { SearchArticle } from "../types/response.types";
 import { PresentationalArticleItem } from "./PresentationalArticleItem";
 
-export const PresentationalArticles: React.FC<{ dummyItems: SearchArticle[] }> =
+export const PresentationalArticles: React.FC<{ dummyItems: SearchArticle[], theme:boolean }> =
   (props) => {
-    const UI = useSelector((state: RootState) => state.uiLoading);
-
-    const { uiTheme } = UI;
     return (
       <section className="default-items">
         <div className="default-items__title">
@@ -22,7 +19,7 @@ export const PresentationalArticles: React.FC<{ dummyItems: SearchArticle[] }> =
                 <PresentationalArticleItem
                   key={el.id}
                   itemsContent={el}
-                  uiTheme={uiTheme}
+                  theme={props.theme}
                 />
               );
             })}

@@ -4,7 +4,7 @@ import { RootState } from "../../redux/store/store";
 import { SearchArticle } from "../../types/response.types";
 import SavedItems from "./SavedItems";
 
-const VisitedArticles = () => {
+const VisitedArticles:React.FC<{theme:boolean}> = (props) => {
   const articlesState = useSelector((state: RootState) => state.articles);
   const { selectedItemsLocalStorage } = articlesState;
 
@@ -14,16 +14,14 @@ const VisitedArticles = () => {
     dbDispatchLocalStorage(setArticleIdAsync(id, article));
   };
   //TODO:USE EVENT DELEGATION, ONE SINGLE EVENT LISTENER, PERFORMANCE COST
-  const UI =  useSelector((state:RootState) => state.uiLoading);
-
-  const {uiTheme} = UI;
+  
   return (
     <ul className="marked-items__list">
       {selectedItemsLocalStorage.map((el: SearchArticle) => (
         <SavedItems
           key={el.id}
           itemsContent={el}
-          uiTheme={uiTheme}
+          theme={props.theme}
           onSelect={selectItemHandler}
         />
       ))}

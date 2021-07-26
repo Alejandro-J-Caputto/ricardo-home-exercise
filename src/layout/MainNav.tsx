@@ -1,23 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../logo.svg";
-import { toggleTheme } from "../redux/actions/uiActions";
-import { useAppDispatch } from "../redux/hooks";
-import { RootState } from "../redux/store/store";
-const MainNav: React.FC = () => {
-  const setTheme = useAppDispatch();
+
+
+const MainNav: React.FC<{ onThemeHandler: () => void, theme:boolean }> = (props) => {
   const themeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const btn = event.target as HTMLButtonElement;
     btn.classList.toggle("dark");
-    setTheme(toggleTheme());
+    props.onThemeHandler();
   };
-  const UI =  useSelector((state:RootState) => state.uiLoading);
-
-  const {uiTheme} = UI;
-
+ 
   return (
-    <header className={`header ${uiTheme && "dark"}` }>
+    <header className={`header ${props.theme && "dark"}`}>
       <div className="logo">
         <Link to="/home-exercise" className="logo-link">
           <img className="logo__svg" src={logo} alt="ricardo logo" />

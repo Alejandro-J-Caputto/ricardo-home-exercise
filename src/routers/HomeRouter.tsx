@@ -13,14 +13,12 @@ import {
 import { RootState } from "../redux/store/store";
 import { ArticleInitialState } from "../types/reducers.interface";
 
-const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
+const HomeRouter: React.FC<{ routing: RouteComponentProps, theme:boolean }> = (props) => {
   const dbDispatchLocalStorage = useDispatch();
   const articlesState: ArticleInitialState = useSelector(
     (state: RootState) => state.articles
   );
-  const UI = useSelector((state: RootState) => state.uiLoading);
 
-  const { uiTheme } = UI;
   const { articles } = articlesState;
   useEffect(() => {
     dbDispatchLocalStorage(fetchAllArticlesByText("nintendo"));
@@ -33,19 +31,19 @@ const HomeRouter: React.FC<{ routing: RouteComponentProps }> = (props) => {
           <Redirect to="/home-exercise" />
         </Route>
         <Route path="/home-exercise/merkliste">
-          <Merkliste theme={uiTheme} />
+          <Merkliste theme={props.theme} />
         </Route>
         <Route exact path="/home-exercise">
-          <DummyLandingPage theme={uiTheme} dummyItems={articles} />
+          <DummyLandingPage theme={props.theme} dummyItems={articles} />
         </Route>
         <Route path="/home-exercise/search/:searchText">
-          <ArticlesView theme={uiTheme} />
+          <ArticlesView theme={props.theme} />
         </Route>
         <Route path="/home-exercise/article/:articleId">
-          <ArticleItemView theme={uiTheme} />
+          <ArticleItemView theme={props.theme} />
         </Route>
         <Route path="*">
-          <NotFound404 theme={uiTheme} />
+          <NotFound404 theme={props.theme} />
         </Route>
       </Switch>
     </>

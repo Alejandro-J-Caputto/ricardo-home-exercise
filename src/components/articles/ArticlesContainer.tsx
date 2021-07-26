@@ -13,10 +13,8 @@ import SearchFilter from "./SearchFilter";
 const ArticlesContainer: React.FC<{
   items: SearchArticle[];
   isLoading: boolean;
+  theme: boolean;
 }> = (props) => {
-  const UI = useSelector((state: RootState) => state.uiLoading);
-
-  const { uiTheme } = UI;
   const dbDispatchLocalStorage = useDispatch();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { items, isLoading } = props;
@@ -64,7 +62,7 @@ const ArticlesContainer: React.FC<{
       return (
         <ArticleItem
           key={el.id}
-          uiTheme={uiTheme}
+          theme={props.theme}
           itemsContent={el}
           onSelect={selectItemHandler}
           onStoreItem={storeItemHandler}

@@ -1,15 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { RootState } from "../../redux/store/store";
 
-const SearchBar: React.FC<{}> = (props) => {
+const SearchBar: React.FC<{theme:boolean}> = (props) => {
   const history = useHistory();
-  const UI =  useSelector((state:RootState) => state.uiLoading);
 
-  const {uiTheme} = UI;
   const [enteredText, setEnteredText] = useState("");
 
   const [searchInputIsValid, setSearchInputIsValid] = useState<boolean>(false);
@@ -43,7 +39,7 @@ const SearchBar: React.FC<{}> = (props) => {
           name="search"
           id="search"
           placeholder="Search Article"
-          className={`searchBar-group__input ${uiTheme && 'dark'}`}
+          className={`searchBar-group__input ${props.theme && 'dark'}`}
           autoComplete="off"
         />
         <label htmlFor="search" className="searchBar-group__label">
@@ -51,7 +47,7 @@ const SearchBar: React.FC<{}> = (props) => {
         </label>
         <button
           onClick={submitHandler}
-          className={`btn btn-search ${uiTheme && 'dark'}`}
+          className={`btn btn-search ${props.theme && 'dark'}`}
           disabled={!searchInputIsValid}
         >
           <i className="fas fa-search"></i>
