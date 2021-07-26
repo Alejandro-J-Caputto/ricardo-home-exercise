@@ -1,32 +1,35 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticlesContainer from "../components/articles/ArticlesContainer";
-import { fetchAllArticlesByText } from "../redux/actions/articlesActions";
-import { RootState } from "../redux/store/store";
-import {
-  ArticleInitialState,
-  UIinitialState,
-} from "../types/reducers.interface";
+import useFetch from "../hooks/useFetch";
+import { SearchArticle, SearchResponse } from "../types/response.types";
 
 const ArticlesView: React.FC<{ theme: boolean }> = (props) => {
   const { searchText: enteredText } = useParams<{ searchText: string }>();
-  const articlesDispatch = useDispatch();
-  const articlesState: ArticleInitialState = useSelector(
-    (state: RootState) => state.articles
-  );
-  const uiState: UIinitialState = useSelector(
-    (state: RootState) => state.uiLoading
-  );
-  const { loadingHTTP } = uiState;
-  const { articles } = articlesState;
+  const [articles, setArticles] = useState<SearchArticle[]>([]);
+  const { httpRequest: fetchArticles, isLoading } = useFetch();
+
   useEffect(() => {
-    articlesDispatch(fetchAllArticlesByText(enteredText));
-  }, [enteredText, articlesDispatch]);
+    fetchArticles(
+      {
+        endpoint: "search",
+        params: `searchText=${enteredText}`,
+        method: "GET",
+      },
+      (dataComponent) => {
+        const results = dataComponent as SearchResponse;
+        setArticles(results.articles);
+      }
+    );
+  }, [enteredText, fetchArticles]);
   return (
     <>
       <section className="container">
-        <ArticlesContainer theme={props.theme} items={articles} isLoading={loadingHTTP} />
+        <ArticlesContainer
+          theme={props.theme}
+          items={articles}
+          isLoading={isLoading}
+        />
       </section>
     </>
   );
