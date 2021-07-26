@@ -74,6 +74,7 @@ export const setArticleIdAsync = (id: string, article: SearchArticle) => {
       selectedItemsArr = [];
       selectedItemsArr.push(id);
       localStorage.setItem("selectedItems", JSON.stringify(selectedItemsArr));
+      dispatch(setArticleID(selectedItemsArr))
       itemsDBLocal = [];
       itemsDBLocal.push(article);
       localStorage.setItem("itemsDBLocal", JSON.stringify(itemsDBLocal));
