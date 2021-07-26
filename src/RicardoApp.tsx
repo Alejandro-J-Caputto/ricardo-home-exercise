@@ -11,6 +11,7 @@ import AuthRouter from "./routers/AuthRouter";
 import HomeRouter from "./routers/HomeRouter";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
+import Footer from "./layout/Footer";
 
 const RicardoApp: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const RicardoApp: React.FC = () => {
                 )}
               />
             </Switch>
+            <Footer/>
           </Router>
         </AppRouter>
       </RicardoWrapper>

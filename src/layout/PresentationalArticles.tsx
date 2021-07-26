@@ -11,16 +11,23 @@ export const PresentationalArticles: React.FC<{ dummyItems: SearchArticle[] }> =
 
     const { uiTheme } = UI;
     return (
-      <div className="articles-grid">
-        {props.dummyItems.slice(0, 15).map((el) => {
-          return (
-            <PresentationalArticleItem
-              key={el.id}
-              itemsContent={el}
-              uiTheme={uiTheme}
-            />
-          );
-        })}
-      </div>
+      <section className="default-items">
+        <div className="default-items__title">
+          <h2>Find the best products</h2>
+        </div>
+        <div className="default-item__grid">
+          <div className="articles-grid">
+            {props.dummyItems.slice(0, 15).map((el) => {
+              return (
+                <PresentationalArticleItem
+                  key={el.id}
+                  itemsContent={el}
+                  uiTheme={uiTheme}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </section>
     );
   };
