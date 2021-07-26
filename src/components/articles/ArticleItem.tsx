@@ -5,7 +5,6 @@ const ArticleItem: React.FC<{
   itemsContent: SearchArticle;
   selected: boolean;
   onSelect: (id: string, article: SearchArticle) => void;
-  onStoreItem: (article: SearchArticle) => void;
   theme: boolean;
 }> = (props) => {
   const { buyNowPrice, endDate, id, imageUrl, title } = props.itemsContent;

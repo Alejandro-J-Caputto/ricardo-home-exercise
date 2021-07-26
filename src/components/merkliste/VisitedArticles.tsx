@@ -1,23 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setArticleIdAsync } from "../../redux/actions/articlesActions";
-import { RootState } from "../../redux/store/store";
+import { AnyAction } from "redux";
+import useDummyDbStorage from "../../hooks/useDummyDbStorage";
+import {
+  setArticleID,
+  setArticleItemLocal,
+} from "../../redux/actions/articlesActions";
 import { SearchArticle } from "../../types/response.types";
 import SavedItems from "./SavedItems";
 
-const VisitedArticles:React.FC<{theme:boolean}> = (props) => {
-  const articlesState = useSelector((state: RootState) => state.articles);
-  const { selectedItemsLocalStorage } = articlesState;
-
-  const dbDispatchLocalStorage = useDispatch();
-
-  const selectItemHandler = (id: string, article: SearchArticle) => {
-    dbDispatchLocalStorage(setArticleIdAsync(id, article));
+const VisitedArticles: React.FC<{
+  theme: boolean;
+  selectedItems: SearchArticle[];
+  articlesDispatch: React.Dispatch<AnyAction>;
+}> = (props) => {
+  const { dummyLocalStorageDBHandler } = useDummyDbStorage();
+  const selectItemHandler = async (id: string, article: SearchArticle) => {
+    const response = await dummyLocalStorageDBHandler(id, article);
+    props.articlesDispatch(setArticleItemLocal(response.itemsDBLocal!));
+    props.articlesDispatch(setArticleID(response.selectedItemsArr!));
   };
   //TODO:USE EVENT DELEGATION, ONE SINGLE EVENT LISTENER, PERFORMANCE COST
-  
+
   return (
+    <>
     <ul className="marked-items__list">
-      {selectedItemsLocalStorage.map((el: SearchArticle) => (
+      {props.selectedItems.map((el: SearchArticle) => (
         <SavedItems
           key={el.id}
           itemsContent={el}
@@ -26,6 +32,7 @@ const VisitedArticles:React.FC<{theme:boolean}> = (props) => {
         />
       ))}
     </ul>
+    </>
   );
 };
 

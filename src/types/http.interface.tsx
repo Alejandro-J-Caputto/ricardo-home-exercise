@@ -1,6 +1,7 @@
 import {
   ArticleResponse,
   GetUserResponse,
+  SearchArticle,
   SearchResponse,
 } from "./response.types";
 
@@ -12,4 +13,4 @@ export default interface HttpConfig {
   body?: any;
 }
 
-export type cbData = (data?: GetUserResponse | ArticleResponse | SearchResponse) => void;
+export type cbData = (data?: GetUserResponse | ArticleResponse | SearchResponse | SearchArticle | SearchArticle[], dataIds?:string[]) => void;

@@ -2,7 +2,7 @@ import { AnyAction } from "redux";
 import { ArticleInitialState } from "../../types/reducers.interface";
 import { ArticleTypes } from "../action-types/actions.types";
 
-const initialState: ArticleInitialState = {
+export const initialState: ArticleInitialState = {
   articles: [],
   articlesById: {
     id: "",

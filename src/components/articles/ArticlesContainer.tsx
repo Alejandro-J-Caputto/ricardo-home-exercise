@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Dispatch, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AnyAction } from "redux";
+import useDummyDbStorage from "../../hooks/useDummyDbStorage";
 import {
   getSelectedArticlesIdAsync,
-  postItemLocalAsync,
-  setArticleIdAsync,
+  setArticleID,
+  setArticleItemLocal,
 } from "../../redux/actions/articlesActions";
-import { RootState } from "../../redux/store/store";
+
+import { ArticleInitialState } from "../../types/reducers.interface";
 import { SearchArticle } from "../../types/response.types";
+
 import ArticleItem from "./ArticleItem";
 import SearchFilter from "./SearchFilter";
 
@@ -14,6 +18,8 @@ const ArticlesContainer: React.FC<{
   items: SearchArticle[];
   isLoading: boolean;
   theme: boolean;
+  articlesDispatch: Dispatch<AnyAction>;
+  articlesState: ArticleInitialState;
 }> = (props) => {
   const dbDispatchLocalStorage = useDispatch();
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -23,15 +29,17 @@ const ArticlesContainer: React.FC<{
   const limitPage = Math.ceil((items.length + 1) / articlesPerPage);
   const displayedArticles = items.slice(0, articlesPerPage * pageNumber);
 
-  const storeItemHandler = (article: SearchArticle) => {
-    dbDispatchLocalStorage(postItemLocalAsync(article));
+  const { savedArticlesIDs: selectedItems } = props.articlesState;
+  const { dummyLocalStorageDBHandler } = useDummyDbStorage();
+
+  const selectItemHandler = async (id: string, article: SearchArticle) => {
+    const responseDummy = await dummyLocalStorageDBHandler(id, article);
+    props.articlesDispatch(setArticleID(responseDummy.selectedItemsArr!));
+    props.articlesDispatch(
+      setArticleItemLocal(responseDummy.itemsDBLocal as SearchArticle[])
+    );
   };
-  const selectedItems = useSelector(
-    (state: RootState) => state.articles.savedArticlesIDs
-  );
-  const selectItemHandler = (id: string, article: SearchArticle) => {
-    dbDispatchLocalStorage(setArticleIdAsync(id, article));
-  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -65,7 +73,6 @@ const ArticlesContainer: React.FC<{
           theme={props.theme}
           itemsContent={el}
           onSelect={selectItemHandler}
-          onStoreItem={storeItemHandler}
           selected={selectedItems.includes(`${el.id}`) ? true : false}
         />
       );

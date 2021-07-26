@@ -1,10 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { AnyAction } from "redux";
 import SavedArticles from "../components/merkliste/SavedArticles";
 import VisitedArticles from "../components/merkliste/VisitedArticles";
 import NavArticles from "../layout/NavArticles";
+import { SearchArticle } from "../types/response.types";
 
-const Merkliste: React.FC<{ theme: boolean }> = (props) => {
+const Merkliste: React.FC<{
+  theme: boolean;
+  selectedItems: SearchArticle[];
+  articlesDispatch: React.Dispatch<AnyAction>;
+}> = (props) => {
   return (
     <div className="container-centered">
       <div className="merkliste">
@@ -15,7 +21,11 @@ const Merkliste: React.FC<{ theme: boolean }> = (props) => {
         <div>
           <Switch>
             <Route exact path="/home-exercise/merkliste/saved">
-              <VisitedArticles theme={props.theme} />ﬂ
+              <VisitedArticles
+                articlesDispatch={props.articlesDispatch}
+                theme={props.theme}
+                selectedItems={props.selectedItems}
+              />
             </Route>
             <Route
               exact

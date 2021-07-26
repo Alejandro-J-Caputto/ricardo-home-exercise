@@ -1,29 +1,59 @@
+import { useState } from "react";
+import { useReducer } from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Redirect, Route, RouteComponentProps, Switch } from "react-router-dom";
+import useDummyDbStorage from "../hooks/useDummyDbStorage";
+import useFetch from "../hooks/useFetch";
 import ArticleItemView from "../pages/ArticleItemView";
 import ArticlesView from "../pages/ArticlesView";
 import DummyLandingPage from "../pages/DummyLandingPage";
 import Merkliste from "../pages/Merkliste";
 import NotFound404 from "../pages/NotFound404";
 import {
-  fetchAllArticlesByText,
-  getSelectedArticlesIdAsync,
+  setArticleID,
+  setArticleItemLocal,
 } from "../redux/actions/articlesActions";
-import { RootState } from "../redux/store/store";
-import { ArticleInitialState } from "../types/reducers.interface";
+import {
+  articlesReducer,
+  initialState,
+} from "../redux/reducers/articlesReducer";
+import { SearchArticle, SearchResponse } from "../types/response.types";
 
-const HomeRouter: React.FC<{ routing: RouteComponentProps, theme:boolean }> = (props) => {
-  const dbDispatchLocalStorage = useDispatch();
-  const articlesState: ArticleInitialState = useSelector(
-    (state: RootState) => state.articles
+const HomeRouter: React.FC<{ routing: RouteComponentProps; theme: boolean }> = (
+  props
+) => {
+  const [articles, setArticles] = useState<SearchArticle[]>([]);
+  const { httpRequest: fetchArticles } = useFetch();
+  const [articlesState, articlesDispatch] = useReducer(
+    articlesReducer,
+    initialState
   );
 
-  const { articles } = articlesState;
+  const { getSelectedArticlesIdAsync } = useDummyDbStorage();
+  const dbDispatchLocalStorage = useDispatch();
+
   useEffect(() => {
-    dbDispatchLocalStorage(fetchAllArticlesByText("nintendo"));
-    dbDispatchLocalStorage(getSelectedArticlesIdAsync());
-  }, [dbDispatchLocalStorage]);
+    const setIdsHandler = async () => {
+      const response = await getSelectedArticlesIdAsync();
+      articlesDispatch(setArticleID(response?.selectedItemsArr!));
+      articlesDispatch(setArticleItemLocal(response?.itemsDBLocal!));
+    };
+    setIdsHandler();
+  }, [dbDispatchLocalStorage, getSelectedArticlesIdAsync]);
+  useEffect(() => {
+    fetchArticles(
+      {
+        endpoint: "search",
+        params: `searchText=nintendo`,
+        method: "GET",
+      },
+      (dataComponent) => {
+        const results = dataComponent as SearchResponse;
+        setArticles(results.articles);
+      }
+    );
+  }, [fetchArticles]);
   return (
     <>
       <Switch>
@@ -31,13 +61,17 @@ const HomeRouter: React.FC<{ routing: RouteComponentProps, theme:boolean }> = (p
           <Redirect to="/home-exercise" />
         </Route>
         <Route path="/home-exercise/merkliste">
-          <Merkliste theme={props.theme} />
+          <Merkliste theme={props.theme} articlesDispatch={articlesDispatch} selectedItems={articlesState.selectedItemsLocalStorage} />
         </Route>
         <Route exact path="/home-exercise">
-          <DummyLandingPage theme={props.theme} dummyItems={articles} />
+          <DummyLandingPage theme={props.theme} dummyItems={articles || []} />
         </Route>
         <Route path="/home-exercise/search/:searchText">
-          <ArticlesView theme={props.theme} />
+          <ArticlesView
+            theme={props.theme}
+            articlesState={articlesState}
+            articlesDispatch={articlesDispatch}
+          />
         </Route>
         <Route path="/home-exercise/article/:articleId">
           <ArticleItemView theme={props.theme} />
