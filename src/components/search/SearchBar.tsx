@@ -23,13 +23,16 @@ const SearchBar: React.FC<{}> = (props) => {
   };
 
   useEffect(() => {
+    if(searchInputIsValid) {
+      return
+    }
     const validTimer = setTimeout(() => {
       setSearchInputIsValid(enteredText.trim().length > 3);
     }, 500);
     return () => {
       clearInterval(validTimer);
     };
-  }, [enteredText]);
+  }, [enteredText, searchInputIsValid]);
 
   return (
     <div className="searchBar">

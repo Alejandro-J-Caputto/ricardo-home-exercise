@@ -29,7 +29,7 @@
       letter-spacing: 0.2rem;
     }
     @include responsive(tab-land) {
-        flex: 0 0 70%;
+      flex: 0 0 70%;
       span {
         background-color: whitesmoke;
         padding: 1rem;
@@ -45,6 +45,7 @@
       height: 60rem;
     }
     @include responsive(tab-land) {
+      opacity: 0.4;
       position: absolute;
       z-index: 0;
       //   top: -18%;
@@ -67,15 +68,15 @@
     margin-bottom: 10rem;
   }
   @include responsive(phone) {
-      margin-bottom: 60rem;
-      margin-top: 0;
+    margin-bottom: 60rem;
+    margin-top: 0;
   }
   @include responsive(phone-land) {
     // display: flex;
     margin-top: 20rem;
   }
   @include responsive(tab-port) {
-      margin-bottom: 70rem;
+    margin-bottom: 70rem;
   }
 }
 .card-home--1 {
@@ -146,7 +147,6 @@
   background-color: olivedrab;
   width: 100%;
 }
-
 
 .background-red {
   background-color: orangered;
