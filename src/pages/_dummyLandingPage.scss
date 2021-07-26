@@ -81,6 +81,9 @@
 }
 .card-home--1 {
   top: 5%;
+  & img {
+
+  }
 }
 .card-home--2 {
   top: 15%;
@@ -88,6 +91,10 @@
 }
 .card-home--3 {
   top: 55%;
+
+  // &-head {
+  //   flex: 0 0 45%;
+  // }
 }
 .card-home--4 {
   top: 70%;
@@ -120,6 +127,7 @@
   &-head {
     flex: 0 0 50%;
     width: 100%;
+    overflow: hidden;
     &__img {
       height: 100%;
       width: 100%;

@@ -1,20 +1,19 @@
 import React from "react";
 import online from "../assets/img/Online store _Monochromatic (1).svg";
 
-export const HeroSection:React.FC = () => {
+export const HeroSection: React.FC = () => {
   return (
     <section className="hero">
       <div className="hero-heading">
         <h1 className="hero-heading__title">
-          Welcome to <br /> <span>Ricardo</span>
+          <span>Ricardo</span> Home-Exercise
         </h1>
-        <h3 className="hero-heading__tertiary">
-          We give to your valuable things a second home.
-        </h3>
+        <h3 className="hero-heading__tertiary">I hope you like the results</h3>
         <p className="hero-heading__paragraph">
-          Bei Ricardo darf sich jedes Mitglied zuhause fühlen. Egal ob zum
-          Stöbern, Einkaufen, Verkaufen oder zum Sammeln von inspirierenden
-          Ideen – auf Ricardo gibt es Platz und Raum für alles und für alle.
+          After thinking about it, I have made three versions: <br />
+           1. Exercise with minimal requirements. <br />
+           2. Exercise with some features and redux. <br />
+           3. Exercise with some features and no redux. <br />
         </p>
       </div>
       <div className="hero-img">

@@ -8,6 +8,7 @@ import {
 import { RootState } from "../../redux/store/store";
 import { SearchArticle } from "../../types/response.types";
 import ArticleItem from "./ArticleItem";
+import SearchFilter from "./SearchFilter";
 
 const ArticlesContainer: React.FC<{
   items: SearchArticle[];
@@ -56,60 +57,46 @@ const ArticlesContainer: React.FC<{
     setPageNumber((prevVal) => prevVal + 1);
   };
 
+  const articlesAfterLoading = isLoading ? (
+    <div className="spinner"></div>
+  ) : filteredArticles.length ? (
+    filteredArticles.map((el) => {
+      return (
+        <ArticleItem
+          key={el.id}
+          uiTheme={uiTheme}
+          itemsContent={el}
+          onSelect={selectItemHandler}
+          onStoreItem={storeItemHandler}
+          selected={selectedItems.includes(`${el.id}`) ? true : false}
+        />
+      );
+    })
+  ) : (
+    <p className="not-found__msg">Not Found</p>
+  );
+  const loadButton =
+    filteredArticles.length && displayedArticles.length !== items.length ? (
+      <div className="load-next">
+        <button className="btn btn-card" onClick={pageNumberHandler}>
+          LOAD MORE
+        </button>
+      </div>
+    ) : null;
   return (
     <div>
       <div className="container-np">
-        <div className="filterItem">
-          <form className="filterItem-group">
-            <input
-              autoComplete="off"
-              type="text"
-              name="filter"
-              placeholder="Filter by name"
-              value={searchTerm}
-              onChange={handleInputChange}
-              id="filter"
-              className="filterItem__input"
-            />
-            <label htmlFor="filter" className="filterItem__label">
-              Filter
-            </label>
-          </form>
-        </div>
+        <SearchFilter
+          searchTerm={searchTerm}
+          handleInputChange={handleInputChange}
+        />
         {!isLoading ? (
           <p className="count-result">
-            Total Count: {displayedArticles.length}{" "}
+            Total Count: {displayedArticles.length}
           </p>
         ) : null}
-
-        <div className="articles-grid">
-          {isLoading ? (
-            <div className="spinner"></div>
-          ) : filteredArticles.length ? (
-            filteredArticles.map((el) => {
-              return (
-                <ArticleItem
-                  key={el.id}
-                  uiTheme={uiTheme}
-                  itemsContent={el}
-                  onSelect={selectItemHandler}
-                  onStoreItem={storeItemHandler}
-                  selected={selectedItems.includes(`${el.id}`) ? true : false}
-                />
-              );
-            })
-          ) : (
-            <p className="not-found__msg">Not Found</p>
-          )}
-        </div>
-        {filteredArticles.length &&
-        displayedArticles.length !== items.length ? (
-          <div className="load-next">
-            <button className="btn btn-card" onClick={pageNumberHandler}>
-              LOAD MORE
-            </button>
-          </div>
-        ) : null}
+        <div className="articles-grid">{articlesAfterLoading}</div>
+        {loadButton}
       </div>
     </div>
   );
