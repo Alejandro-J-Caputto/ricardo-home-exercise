@@ -72,7 +72,6 @@ const RicardoApp: React.FC = () => {
                 )}
               />
             </Switch>
-            <Footer />
           </Router>
         </AppRouter>
       </RicardoWrapper>
