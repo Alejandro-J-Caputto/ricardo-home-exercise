@@ -1,0 +1,98 @@
+.auth {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-form {
+    &.dark {
+      background-color: $theme-background-dark-soft !important;
+      color: whitesmoke;
+      .auth-form-group {
+        &__label {
+          background-color: $theme-background-dark;
+        }
+      }
+    }
+    background-color: $background-nav;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    &__head {
+      position: relative;
+      flex: 0 0 20%;
+      text-align: center;
+      h2 {
+        @include absoluteCenter;
+      }
+    }
+    &-group {
+      display: flex;
+      position: relative;
+      flex: 0 0 20%;
+      flex-direction: column;
+      align-items: center;
+      .btn--auth {
+        color: white;
+        background-color: turquoise;
+        border: none;
+        border-radius: 8px;
+        width: 80%;
+        padding: 1rem;
+        transition: all 0.3s;
+        &:disabled {
+          background-color: grey;
+          cursor: not-allowed;
+        }
+        &:hover:not(:disabled) {
+          background-color: teal;
+        }
+      }
+      &__input {
+        font-size: inherit;
+        font-family: inherit;
+        width: 80%;
+        height: 80%;
+        padding: 0 1.3rem;
+        transition: all 0.3s;
+      }
+      &__label {
+        transition: all 0.3s;
+        position: absolute;
+        left: 13%;
+        top: -12%;
+        background-color: whitesmoke;
+      }
+      &__input:placeholder-shown ~ &__label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(10%, 90%);
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.error-form {
+  border-radius: 12px;
+  background-color: rgba($color: lightcoral, $alpha: 0.2);
+  color: white;
+  padding: 1rem;
+  margin-top: 4px;
+}
+.auth__error {
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba($color: lightcoral, $alpha: 0.6);
+
+  text-align: center;
+  color: white;
+  width: 90%;
+  @include responsive(phone) {
+    align-self: center;
+  }
+}
+.auth__error--input {
+  background-color: rgba($color: lightcoral, $alpha: 0.6);
+}

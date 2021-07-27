@@ -1,15 +1,19 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../logo.svg";
+import { AuthInitialState } from "../types/reducers.interface";
 
-
-const MainNav: React.FC<{ onThemeHandler: () => void, theme:boolean }> = (props) => {
+const MainNav: React.FC<{
+  onThemeHandler: () => void;
+  theme: boolean;
+  authState: AuthInitialState;
+}> = (props) => {
   const themeHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const btn = event.target as HTMLButtonElement;
     btn.classList.toggle("dark");
     props.onThemeHandler();
   };
- 
+
   return (
     <header className={`header ${props.theme && "dark"}`}>
       <div className="logo">

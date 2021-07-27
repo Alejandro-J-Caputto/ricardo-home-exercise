@@ -32,3 +32,4 @@ export const AuthTypes = {
   authRegister: "[Auth] Register",
   authLogout: "[Auth]Logout",
 };
+

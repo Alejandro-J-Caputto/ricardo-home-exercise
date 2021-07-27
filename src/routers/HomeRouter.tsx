@@ -18,11 +18,14 @@ import {
   articlesReducer,
   initialState,
 } from "../redux/reducers/articlesReducer";
+import { AuthInitialState } from "../types/reducers.interface";
 import { SearchArticle, SearchResponse } from "../types/response.types";
 
-const HomeRouter: React.FC<{ routing: RouteComponentProps; theme: boolean }> = (
-  props
-) => {
+const HomeRouter: React.FC<{
+  routing: RouteComponentProps;
+  theme: boolean;
+  authState: AuthInitialState;
+}> = (props) => {
   const [articles, setArticles] = useState<SearchArticle[]>([]);
   const { httpRequest: fetchArticles } = useFetch();
   const [articlesState, articlesDispatch] = useReducer(
@@ -61,7 +64,15 @@ const HomeRouter: React.FC<{ routing: RouteComponentProps; theme: boolean }> = (
           <Redirect to="/home-exercise" />
         </Route>
         <Route path="/home-exercise/merkliste">
-          <Merkliste theme={props.theme} articlesDispatch={articlesDispatch} selectedItems={articlesState.selectedItemsLocalStorage} />
+          {props.authState.isLoggedIn ? (
+            <Merkliste
+              theme={props.theme}
+              articlesDispatch={articlesDispatch}
+              selectedItems={articlesState.selectedItemsLocalStorage}
+            />
+          ) : (
+            <Redirect to="/auth/login" />
+          )}
         </Route>
         <Route exact path="/home-exercise">
           <DummyLandingPage theme={props.theme} dummyItems={articles || []} />

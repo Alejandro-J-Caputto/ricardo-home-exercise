@@ -13,3 +13,9 @@ export interface UIinitialState {
   loadingApp: boolean;
   uiTheme: boolean;
 }
+
+export interface AuthInitialState {
+  name: string;
+  email: string;
+  isLoggedIn: boolean;
+}
