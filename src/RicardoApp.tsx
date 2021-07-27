@@ -24,7 +24,7 @@ const RicardoApp: React.FC = () => {
               )}
             />
             <Route
-              path="/"
+              path="/home-exercise"
               component={(props: RouteComponentProps) => (
                 <HomeRouter routing={props} />
               )}
