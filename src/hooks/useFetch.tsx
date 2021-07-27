@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useState } from "react";
+import { REACT_APP_API_KEY, REACT_APP_API_URL } from "../env";
 import HttpConfig, { cbData } from "../types/http.interface";
 
 export const useFetch = () => {
@@ -11,7 +12,7 @@ export const useFetch = () => {
      setIsLoading(true);
      try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/${httpConfig.endpoint}?${httpConfig.params}&apiToken=${process.env.REACT_APP_API_KEY}`,
+          `${REACT_APP_API_URL}/${httpConfig.endpoint}?${httpConfig.params}&apiToken=${REACT_APP_API_KEY}`,
           {
             method: httpConfig.method,
             headers: httpConfig.headers ? httpConfig.headers : [],

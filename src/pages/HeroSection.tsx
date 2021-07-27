@@ -8,9 +8,9 @@ export const HeroSection: React.FC = () => {
         <h1 className="hero-heading__title">
           <span>Ricardo</span> Home-Exercise
         </h1>
-        <h3 className="hero-heading__tertiary">I hope you like the results</h3>
+        <h3 className="hero-heading__tertiary">I hope you like it!</h3>
         <p className="hero-heading__paragraph">
-          After thinking about it, I have made three versions: <br />
+          I have made three versions: <br />
            1. Exercise with minimal requirements. <br />
            2. Exercise with some features and redux. <br />
            3. Exercise with some features and no redux. <br />

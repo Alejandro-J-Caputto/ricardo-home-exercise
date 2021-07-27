@@ -6,6 +6,7 @@ import {
 } from "../../redux/actions/articlesActions";
 import { SearchArticle } from "../../types/response.types";
 import SavedItems from "./SavedItems";
+import placeholderIMG from '../../assets/img/Data Collecting_Two Color.svg'
 
 const VisitedArticles: React.FC<{
   theme: boolean;
@@ -21,7 +22,13 @@ const VisitedArticles: React.FC<{
   //TODO:USE EVENT DELEGATION, ONE SINGLE EVENT LISTENER, PERFORMANCE COST
 
   return (
-    <>
+    <div>
+      {!props.selectedItems.length ? (
+        <div className="articles-empty">
+          <h1>Please, add an item first</h1>
+          <img src={placeholderIMG} alt="ilustration" />
+        </div>
+      ) : null}
     <ul className="marked-items__list">
       {props.selectedItems.map((el: SearchArticle) => (
         <SavedItems
@@ -32,7 +39,7 @@ const VisitedArticles: React.FC<{
         />
       ))}
     </ul>
-    </>
+    </div>
   );
 };
 

@@ -26,10 +26,8 @@ const CardGridIntersection: React.FC<{ theme: boolean }> = (props) => {
             <p>
               As always, it was really fun to work with React.
               <br />
-              I have faced some small obstacles but I think I have solved them
-              all.
               <br />I really would love to keep working with React & Ricardo ;)
-              and learn ang get better and better.
+              learn and get better and better.
             </p>
           </div>
         </div>
@@ -50,9 +48,10 @@ const CardGridIntersection: React.FC<{ theme: boolean }> = (props) => {
           <div className="card-home-body__content">
             <p>
               I find TypeScript really important and I like to work with it,
-              some times it is hard to find the right type hah, but at the end
-              it worth the effort.
+              some times it is hard to find the right type hah, but in the end
+              it is worth the effort.
             </p>
+            <p>I have too keep learning though</p>
           </div>
         </div>
       </div>
@@ -70,8 +69,8 @@ const CardGridIntersection: React.FC<{ theme: boolean }> = (props) => {
           </div>
           <div className="card-home-body__content">
             <p>
-              I wanted to make an small version with some added features and
-              show that I can work with it. I thouth it was a nice ocassion to
+              I wanted to make a small version with some added features and
+              show that I can work with it. I thought it was a nice ocassion to
               improove and get better with react-redux too.
             </p>
           </div>
@@ -93,8 +92,8 @@ const CardGridIntersection: React.FC<{ theme: boolean }> = (props) => {
             <p>I like too work with Sass partials.</p>
             <br />
             <p>
-              I would like to work with other approaches as CSS Modules or Styled
-              Components.
+              I would like to work with other approaches as CSS Modules or
+              Styled Components.
             </p>
           </div>
         </div>
