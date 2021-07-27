@@ -37,14 +37,18 @@ const RicardoApp: React.FC = () => {
     setTheme((prevVal) => !prevVal);
   };
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(authState))
-  }, [authState])
+    localStorage.setItem("user", JSON.stringify(authState));
+  }, [authState]);
   return (
     <Provider store={store}>
       <RicardoWrapper theme={theme}>
         <AppRouter>
           <Router>
-            <MainNav onThemeHandler={themeHandler} theme={theme} authState={authState}/>
+            <MainNav
+              onThemeHandler={themeHandler}
+              theme={theme}
+              authState={authState}
+            />
             <Switch>
               <Route
                 path="/auth"
@@ -60,7 +64,11 @@ const RicardoApp: React.FC = () => {
               <Route
                 path="/"
                 component={(props: RouteComponentProps) => (
-                  <HomeRouter routing={props} theme={theme}  authState={authState}/>
+                  <HomeRouter
+                    routing={props}
+                    theme={theme}
+                    authState={authState}
+                  />
                 )}
               />
             </Switch>
@@ -73,10 +81,3 @@ const RicardoApp: React.FC = () => {
 };
 
 export default RicardoApp;
-function authReducher(
-  authReducher: any,
-  authInitialState: any,
-  init: () => any
-): [any, any] {
-  throw new Error("Function not implemented.");
-}
